@@ -1,5 +1,6 @@
-$bg: green;
+// MIXINS
+@import "./mixins/respond";
 
-body {
-  background: $bg;
-}
+// BASE
+@import "./base/base";
+@import "./base/utils";
