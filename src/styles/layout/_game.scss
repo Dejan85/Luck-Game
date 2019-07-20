@@ -7,15 +7,17 @@
 
   &__header {
     background: $color-blue;
-    height: 30%;
-    border-bottom: 10px lighten($color-blue, 10%) dashed;
+    height: 25%;
+    border-bottom: 10px lighten($color-blue, 10%) ridge;
 
     @include gradient($color-blue, lighten($color-blue, 30%));
   }
+
   &__body {
-    position: relative;
+    display: flex;
+    flex-direction: column;
     background: $color-green;
-    height: 70%;
+    height: 75%;
     box-shadow: 5px 0px 90px 2px lighten(black, 10%) inset;
 
     @include gradientToRight(
@@ -25,50 +27,78 @@
     );
   }
 
-  &__ticket {
+  &__section {
     display: flex;
-    flex-direction: column;
-    // justify-content: space-around;
-    height: 100%;
-    padding: 4rem 0 0 10rem;
-
-    &--container {
-      max-width: 40rem;
-      border-radius: 1rem;
-      overflow: hidden;
-      padding-bottom: 1rem;
-    }
+    width: 100%;
+    padding: 4rem 0 0 0;
 
     li {
       list-style-type: none;
     }
+  }
+
+  &__ticket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 3;
+    // outline: 1px solid red;
+
+    &--container {
+      display: flex;
+      flex-direction: column;
+      max-width: 40rem;
+      width: 100%;
+      padding-bottom: 1rem;
+    }
 
     &--header {
-      background: $color-pink;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      height: 3rem;
-    }
-
-    &--list {
-      display: flex;
-      background: white;
+      background: $color-pink;
+      height: 4rem;
       width: 100%;
-    }
-
-    &--item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1;
-      height: 6rem;
-      border: 1px solid grey;
     }
   }
 
-  &__footer {
-    height: 25rem;
-    // background: #949a6f;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  &__item {
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    height: 6.5rem;
+    border: 1px solid $color-grey;
+  }
+
+  &__turn {
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 4rem 0 0 0;
+    flex: 1;
+    height: 30rem;
+    border-radius: 2rem;
+    border: 4px solid #215d00;
+  }
+
+  &__ticketPay {
+    display: flex;
+    justify-content: center;
+    flex: 3;
+    // outline: 1px solid pink;
+
+    &--container {
+      display: flex;
+      flex-direction: column;
+      max-width: 40rem;
+      width: 100%;
+      padding-bottom: 1rem;
+    }
   }
 }
