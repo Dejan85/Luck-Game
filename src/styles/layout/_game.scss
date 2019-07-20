@@ -1,0 +1,74 @@
+.game {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  //   justify-content: space-between;
+
+  &__header {
+    background: $color-blue;
+    height: 30%;
+    border-bottom: 10px lighten($color-blue, 10%) dashed;
+
+    @include gradient($color-blue, lighten($color-blue, 30%));
+  }
+  &__body {
+    position: relative;
+    background: $color-green;
+    height: 70%;
+    box-shadow: 5px 0px 90px 2px lighten(black, 10%) inset;
+
+    @include gradientToRight(
+      $color-green,
+      lighten($color-green, 10%),
+      $color-green
+    );
+  }
+
+  &__ticket {
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-around;
+    height: 100%;
+    padding: 4rem 0 0 10rem;
+
+    &--container {
+      max-width: 40rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      padding-bottom: 1rem;
+    }
+
+    li {
+      list-style-type: none;
+    }
+
+    &--header {
+      background: $color-pink;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 3rem;
+    }
+
+    &--list {
+      display: flex;
+      background: white;
+      width: 100%;
+    }
+
+    &--item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      height: 6rem;
+      border: 1px solid grey;
+    }
+  }
+
+  &__footer {
+    height: 25rem;
+    // background: #949a6f;
+  }
+}

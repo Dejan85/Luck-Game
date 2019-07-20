@@ -1,6 +1,17 @@
+// variables
+@import "./variables/colors";
+@import "./variables/fonts";
+
 // MIXINS
 @import "./mixins/respond";
+@import "./mixins/gradient";
 
 // BASE
 @import "./base/base";
 @import "./base/utils";
+
+//leyout
+@import "./layout/game";
+
+// TYPOGRAPFY
+@import "./typograpfy/game";
