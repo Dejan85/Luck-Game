@@ -23,16 +23,10 @@
     color: darken($color-grey, 20%);
   }
 
-  &__button {
-    font-family: $font-3;
-    font-size: 4rem;
-    color: white;
-    user-select: none;
-  }
-
+  &__button,
   &__score {
     font-family: $font-3;
-    font-size: 2.8rem;
+    font-size: 4rem;
     color: white;
     user-select: none;
   }

@@ -1,4 +1,4 @@
 import './styles/main.scss';
-import test from './components/test';
+import app from './components/app';
 
-console.log(test('hello world'));
+app();
