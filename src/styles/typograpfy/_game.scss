@@ -23,7 +23,14 @@
     color: darken($color-grey, 20%);
   }
 
-  &__button,
+  &__button {
+    font-family: $font-2;
+    font-size: 3rem;
+    color: white;
+    user-select: none;
+    line-height: 3rem;
+  }
+
   &__score {
     font-family: $font-3;
     font-size: 4rem;
