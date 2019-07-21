@@ -1,7 +1,7 @@
 @mixin rollBall {
   animation-name: rolling;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
+  animation-duration: 3.5s;
+  animation-timing-function: ease-out;
   //   animation-iteration-count: 5000;
   animation-delay: 2s;
   /* Tells the animation what to-do outside */
@@ -12,17 +12,9 @@
     0% {
       transform: translateX(0) rotate(0turn);
     }
-    // 20% {
-    //   transform: translateX(300px) rotate(0.5turn);
-    // }
-    // 40% {
-    //   transform: translateX(600px) rotate(1.5turn);
-    // }
-    // 70% {
-    //   transform: translateX(800px) rotate(2.5turn);
-    // }
+
     100% {
-      transform: translateX(126rem) rotate(3turn);
+      transform: translateX(126rem) rotate(10turn);
     }
   }
 }
