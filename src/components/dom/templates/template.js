@@ -1,6 +1,6 @@
 // template za ticket
 export const ticketTemplate = (counter, tiket, quota) => {
-  return ` <div class="game__ticket--container">
+  return `<div class="game__ticket--container">
         <div class="game__ticket--header">
           <p class="game__ticket--p"> Tiket: ${tiket}</p>
           <p class="game__ticket--p"> Quota: ${quota}</p>
