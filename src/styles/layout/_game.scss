@@ -46,7 +46,7 @@
     &--ballsHolder {
       display: flex;
       align-items: center;
-      border: 4px solid #b0bdd1;
+      border: 4px ridge #b0bdd1;
       border-left: none;
       height: 11rem;
       max-width: 110rem;
@@ -57,14 +57,21 @@
     &--line {
       max-width: 115rem;
       width: 100%;
-      border-bottom: 2px solid #b0bdd1;
+      border-bottom: 2px ridge #b0bdd1;
     }
 
     &--line2 {
       position: absolute;
       height: 10rem;
-      border-left: 2px solid #b0bdd1;
+      border-left: 2px ridge #b0bdd1;
       left: 45rem;
+    }
+
+    &--line3 {
+      position: absolute;
+      height: 10rem;
+      border-left: 2px solid #b0bdd1;
+      left: 110rem;
     }
   }
 
