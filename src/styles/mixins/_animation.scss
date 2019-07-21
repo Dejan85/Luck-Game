@@ -1,0 +1,28 @@
+@mixin rollBall {
+  animation-name: rolling;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 5000;
+  animation-delay: 2s;
+  /* Tells the animation what to-do outside */
+  animation-fill-mode: both;
+  animation-direction: alternate;
+
+  @keyframes rolling {
+    0% {
+      transform: translateX(0) rotate(0turn);
+    }
+    20% {
+      transform: translateX(300px) rotate(0.5turn);
+    }
+    40% {
+      transform: translateX(0) rotate(-0.2turn);
+    }
+    70% {
+      transform: translateX(800px) rotate(2.5turn);
+    }
+    100% {
+      transform: translateX(0) rotate(-1turn);
+    }
+  }
+}

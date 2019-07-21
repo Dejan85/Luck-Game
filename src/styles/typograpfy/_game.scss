@@ -1,4 +1,14 @@
 .game {
+  &__header {
+    &--ball {
+      p {
+        font-size: 3rem;
+        font-family: $font-3;
+        color: white;
+      }
+    }
+  }
+
   &__ticket {
     &--header {
       font-size: 1.8rem;
