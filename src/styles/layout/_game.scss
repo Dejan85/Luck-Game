@@ -7,11 +7,25 @@
   //   justify-content: space-between;
 
   &__header {
+    display: flex;
+    align-items: center;
     background: $color-blue;
     height: 20%;
     border-bottom: 10px lighten($color-blue, 10%) ridge;
 
     @include gradient($color-blue, lighten($color-blue, 30%));
+
+    &--drum {
+      background: $color-grey;
+      width: 10rem;
+      height: 10rem;
+    }
+    &::after {
+      content: "";
+      width: 2rem;
+      height: 11rem;
+      background: red;
+    }
   }
 
   &__body {
