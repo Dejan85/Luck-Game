@@ -218,42 +218,6 @@
     }
   }
 
-  &__button {
-    position: absolute;
-    border: 0.8rem darken($color-pink, 30%) solid;
-    width: 17rem;
-    height: 12rem;
-    border-radius: 65px 0px 0px 0px;
-    -moz-border-radius: 65px 0px 0px 0px;
-    -webkit-border-radius: 65px 0px 0px 0px;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-
-    &--p {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      background: $color-pink;
-      transition: all 0.5s;
-
-      -webkit-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
-      -moz-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
-      box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
-
-      &:hover {
-        background: darken($color-pink, 20%);
-      }
-
-      &:active {
-        background: darken($color-pink, 25%);
-      }
-    }
-  }
-
   &__footer {
     display: flex;
     justify-content: center;
@@ -360,5 +324,50 @@
         box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75);
       }
     }
+  }
+
+  &__button,
+  &__score {
+    position: absolute;
+    border: 0.8rem darken($color-pink, 30%) solid;
+    width: 17rem;
+    height: 12rem;
+    border-radius: 65px 0px 0px 0px;
+    -moz-border-radius: 65px 0px 0px 0px;
+    -webkit-border-radius: 65px 0px 0px 0px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+
+    &--p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      background: $color-pink;
+      transition: all 0.5s;
+
+      -webkit-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
+      -moz-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
+      box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
+
+      &:hover {
+        background: darken($color-pink, 20%);
+      }
+
+      &:active {
+        background: darken($color-pink, 25%);
+      }
+    }
+  }
+
+  &__score {
+    left: 0;
+    width: 18rem;
+    border-radius: 0px 65px 0px 0px;
+    -moz-border-radius: 0px 65px 0px 0px;
+    -webkit-border-radius: 0px 65px 0px 0px;
   }
 }

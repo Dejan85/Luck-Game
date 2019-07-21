@@ -30,6 +30,13 @@
     user-select: none;
   }
 
+  &__score {
+    font-family: $font-3;
+    font-size: 2.8rem;
+    color: white;
+    user-select: none;
+  }
+
   &__panel {
     &--input {
       font-family: $font-2;
