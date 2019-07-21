@@ -19,12 +19,27 @@
       background: $color-grey;
       width: 10rem;
       height: 10rem;
+
+      @include gradientToRight(
+        $color-grey,
+        lighten($color-grey, 10%),
+        $color-grey
+      );
+
+      // @include gradient($color-grey, lighten($color-grey, 20%));
     }
     &::after {
       content: "";
       width: 2rem;
       height: 11rem;
-      background: red;
+
+      @include gradientToRight(
+        $color-green,
+        lighten($color-green, 20%),
+        $color-green
+      );
+
+      // @include gradient($color-green, lighten($color-green, 20%));
     }
   }
 
