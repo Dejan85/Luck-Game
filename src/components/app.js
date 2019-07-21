@@ -1,7 +1,7 @@
 import switchMessage from './dom/functions/switchMessage';
 
 //
-// ─── MAIN APP ───────────────────────────────────────────────────────────────────
+// ─── MAIN FUN ───────────────────────────────────────────────────────────────────
 //
 
 const app = function () {
