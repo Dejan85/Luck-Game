@@ -10,7 +10,10 @@
       -- ─── FONT ────────────────────────────────────────────────────────
       -->
 
-  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Patua+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Bungee+Inline|Patua+One&display=swap"
+    rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/59428a4613.js"></script>
 
   <title>Luck Game</title>
 </head>
@@ -156,8 +159,27 @@
             -- IZVUCENA KOLA
             -->
 
-          <div class="game__turn">
-            turn
+          <div class="game__rewards">
+            <div class="game__rewards--item">
+              <span>BINGO</span>
+              <p>x1000</p>
+            </div>
+            <div class="game__rewards--item">
+              <span>4 Pogodka</span>
+              <p>x600</p>
+            </div>
+            <div class="game__rewards--item">
+              <span>3 Pogodka</span>
+              <p>x300</p>
+            </div>
+            <div class="game__rewards--item">
+              <span>2 Pogodka</span>
+              <p>x100</p>
+            </div>
+            <div class="game__rewards--item">
+              <span>1 Pogodak</span>
+              <p>x50</p>
+            </div>
           </div>
 
           <!--
@@ -262,21 +284,63 @@
                   30
                 </li>
               </ul>
+
+              <div class="game__ticket--container" style="padding-top:1rem">
+                <div class="game__ticket--header">
+                  <p class="game__ticket--p"> Izabrani brojevi</p>
+                </div>
+                <ul class="game__list">
+                  <li class="game__item">
+
+                  </li>
+                  <li class="game__item">
+
+                  </li>
+                  <li class="game__item">
+
+                  </li>
+                  <li class="game__item">
+
+                  </li>
+                  <li class="game__item">
+
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
         </div>
 
         <!--
-          -- SECOND SECTION
+          -- GAME FOOTER
           -->
 
-        <div class="game__section">
-          ovde treba da ide footer
+        <div class="game__footer">
+          <div class="game__panel">
+            <div class="game__panel--input">
+              Izvlaci se prvo kolo
+            </div>
+            <div class="game__panel--inputs">
+              <div class="game__panel--money">
+                <i class="fas fa-coins"></i>
+                <p>1000</p>
+              </div>
+              <div class="game__panel--bet">
+                <input type="text" placeholder="Unesite ulog"></input>
+                <i class="fas fa-wallet"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="game__button">
+            <p class="game__button--p">PLAY</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </body>
 
 </html>

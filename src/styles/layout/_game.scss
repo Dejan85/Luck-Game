@@ -3,11 +3,12 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
   //   justify-content: space-between;
 
   &__header {
     background: $color-blue;
-    height: 25%;
+    height: 20%;
     border-bottom: 10px lighten($color-blue, 10%) ridge;
 
     @include gradient($color-blue, lighten($color-blue, 30%));
@@ -16,8 +17,9 @@
   &__body {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background: $color-green;
-    height: 75%;
+    height: 80%;
     box-shadow: 5px 0px 90px 2px lighten(black, 10%) inset;
 
     @include gradientToRight(
@@ -76,15 +78,28 @@
     background: white;
     height: 6.5rem;
     border: 1px solid $color-grey;
+    cursor: pointer;
+    user-select: none;
   }
 
-  &__turn {
-    background-color: rgba(0, 0, 0, 0.4);
-    margin: 4rem 0 0 0;
+  &__rewards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex: 1;
-    height: 30rem;
+    height: 40rem;
+    margin: 4rem 0 0 0;
     border-radius: 2rem;
     border: 4px solid #215d00;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    &--item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 20%;
+    }
   }
 
   &__ticketPay {
@@ -99,6 +114,150 @@
       max-width: 40rem;
       width: 100%;
       padding-bottom: 1rem;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    border: 0.8rem darken($color-pink, 30%) solid;
+    width: 17rem;
+    height: 12rem;
+    border-radius: 65px 0px 0px 0px;
+    -moz-border-radius: 65px 0px 0px 0px;
+    -webkit-border-radius: 65px 0px 0px 0px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+
+    &--p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      background: $color-pink;
+      transition: all 0.5s;
+
+      -webkit-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
+      -moz-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
+      box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75) inset;
+
+      &:hover {
+        background: darken($color-pink, 20%);
+      }
+
+      &:active {
+        background: darken($color-pink, 25%);
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 10rem;
+    border-bottom: 1rem darken($color-pink, 30%) solid;
+  }
+
+  &__panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    align-self: center;
+    align-items: center;
+    width: 50rem;
+    height: 12rem;
+
+    border-radius: 45px 45px 0px 0px;
+    -moz-border-radius: 45px 45px 0px 0px;
+    -webkit-border-radius: 45px 45px 0px 0px;
+
+    border: 0.8rem darken($color-pink, 30%) solid;
+
+    background: $color-pink;
+
+    &--input {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: darken($color-pink, 25%);
+      height: 5rem;
+      width: 98%;
+      margin-top: 5px;
+      border: 0.4rem darken($color-pink, 30%) solid;
+
+      border-radius: 30px 30px 0px 0px;
+      -moz-border-radius: 30px 30px 0px 0px;
+      -webkit-border-radius: 30px 30px 0px 0px;
+
+      -webkit-box-shadow: 0px 0px 32px -5px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 32px -5px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 32px -5px rgba(0, 0, 0, 0.75);
+    }
+
+    &--inputs {
+      display: flex;
+      justify-content: space-around;
+      width: 97%;
+    }
+
+    &--money,
+    &--bet {
+      // background: red;
+      width: 98%;
+      display: flex;
+      position: relative;
+      // background: darken($color-pink, 50%);
+      margin-top: 1rem;
+      align-items: center;
+
+      i {
+        font-size: 3rem;
+        color: $color-yellow;
+        z-index: 2;
+      }
+
+      p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2rem;
+        background: darken($color-grey, 35%);
+        width: 20rem;
+        height: 2.3rem;
+        position: absolute;
+        z-index: 1;
+        left: 5px;
+
+        -webkit-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75);
+      }
+    }
+
+    &--bet {
+      i {
+        position: absolute;
+        right: 0;
+        color: darken($color-green, 5%);
+      }
+
+      input {
+        border: none;
+        border-radius: 2rem;
+        background: darken($color-grey, 35%);
+        width: 20rem;
+        height: 2.3rem;
+        position: absolute;
+        z-index: 1;
+        right: 5px;
+        -webkit-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 34px -2px rgba(0, 0, 0, 0.75);
+      }
     }
   }
 }

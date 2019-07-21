@@ -12,4 +12,59 @@
     font-family: $font-1;
     color: darken($color-grey, 20%);
   }
+
+  &__button {
+    font-family: $font-3;
+    font-size: 4rem;
+    color: white;
+    user-select: none;
+  }
+
+  &__panel {
+    &--input {
+      font-family: $font-2;
+      font-size: 2.3rem;
+      color: white;
+      user-select: none;
+    }
+
+    &--money {
+      p {
+        font-family: $font-2;
+        font-size: 1.5rem;
+        color: white;
+        user-select: none;
+      }
+    }
+
+    &--bet {
+      input {
+        font-size: 1.4rem;
+        font-family: $font-2;
+        color: white;
+        text-align: center;
+
+        &::placeholder {
+          color: lighten($color-grey, 25%);
+        }
+
+        &:-ms-input-placeholder {
+          color: lighten($color-grey, 25%);
+        }
+
+        &::-ms-input-placeholder {
+          color: lighten($color-grey, 25%);
+        }
+      }
+    }
+  }
+
+  &__rewards {
+    &--item {
+      font-family: $font-2;
+      font-size: 2.3rem;
+      color: white;
+      user-select: none;
+    }
+  }
 }
