@@ -3,7 +3,6 @@ export const ticketTemplate = ticket => {
   let str = '';
 
   for (let i = 0; i < 5; i++) {
-    console.log(ticket[i]);
     if (ticket[i]) {
       str += `<li class="game__item">${ticket[i]}</li>`;
     } else {

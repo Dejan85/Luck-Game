@@ -14,18 +14,21 @@ import { ticketTemplate } from './dom/templates/template';
 
 const app = function () {
   let ticket = [];
+  let allTickets = [];
   switchMessage();
   btn.textContent = 'IGRAJ!';
 
   const ticketHandler = function () {
-    if (ticket.length < 5) {
-      ticket.push(this.textContent);
-      btn.textContent = 'Potvrdi!';
+    if (allTickets.length !== 5) {
+      if (ticket.length < 5) {
+        ticket.push(this.textContent);
+        btn.textContent = 'Potvrdi!';
 
-      // ubacujemo klinuti broj u izabrani brojevi
-      [...selected__numbers.children].map((item, index) => {
-        item.textContent = ticket[index];
-      });
+        // ubacujemo klinuti broj u izabrani brojevi
+        [...selected__numbers.children].map((item, index) => {
+          item.textContent = ticket[index];
+        });
+      }
     }
   };
 
@@ -34,11 +37,14 @@ const app = function () {
   //
 
   const addTicketHandler = function () {
-    showTicketHandler();
-    ticket = [];
-    [...selected__numbers.children].map((item, index) => {
-      item.textContent = '';
-    });
+    if (allTickets.length !== 5) {
+      showTicketHandler();
+      allTickets.push(ticket);
+      ticket = [];
+      [...selected__numbers.children].map(item => {
+        item.textContent = '';
+      });
+    }
   };
 
   //
