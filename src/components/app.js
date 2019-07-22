@@ -21,11 +21,13 @@ const app = function () {
   const ticketHandler = function () {
     if (allTickets.length !== 5) {
       if (ticket.length < 5) {
+        // proveravamo prazno polje, ako je kliknuto na prazno polje nece ubaciti broj
         if (this.textContent !== ' ') ticket.push(this.textContent);
 
         // brisemo broj sa table kada kliknem na njega
         this.textContent = ' ';
 
+        // menjamo text na glavnom dugmetu
         btn.textContent = 'POTVRDI!';
 
         // ubacujemo klinuti broj u izabrani brojevi
