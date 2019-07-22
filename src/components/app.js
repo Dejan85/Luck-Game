@@ -49,8 +49,14 @@ const app = function () {
 
       // resetujemo brojeve na tabli
       showFillTicket(ticketHandler);
+
+      // ubacujemo sve tikete u glavni array
       allTickets.push(ticket);
+
+      // praznimo array posle potvrdjivanja tiketa
       ticket = [];
+
+      // brisemo brojeve iz  tabele izabrani brojevi posle potvrdjivanja tiekta
       [...selected__numbers.children].map(item => {
         item.textContent = '';
       });
