@@ -104,6 +104,8 @@ const app = function () {
 
   // Funkcija koja upravlja izvlacenjem brojeva
   const playGameHandler = function () {
+    // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug
+    btn.onclick = null;
     // Kreiramo arr sa 30 brojeva koji ce nam sluziti kao brojcanik
     const arr = Array.apply(this, Array(30)).map((item, index) => index + 1);
 
@@ -122,15 +124,21 @@ const app = function () {
         let num = random();
         // Ovde ubacujemo generisan broj u glavni array
         combinations.push(num);
+        console.log(combinations);
       } else {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);
+        // Vracamo klick kako bi mogao korisnik ponovo mogao da pokrene izvlacenje
+        btn.onclick = playGameHandler;
+        // Praznimo array combinations kako bi mogli da izvlacimo nove brojeve
+        combinations = [];
       }
 
       // Funkcija koja nam vraca random broj
       function random () {
         // Generisemo random broj tako sto arr-u dodajemo kao index random broj i tako dobijamo element iz ovog array-a
         let randNum = arr[Math.floor(Math.random() * arr.length)];
+
         // Ovde brisemo dobijeni element iz arr-a iz razloga da ga u sledecem krugu nebi dobili kao duplikat
         arr.splice(arr.indexOf(randNum), 1);
 
