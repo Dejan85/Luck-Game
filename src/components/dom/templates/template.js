@@ -1,35 +1,25 @@
 // template za ticket
-export const ticketTemplate = (counter, tiket, quota) => {
+export const ticketTemplate = ticket => {
+  let str = '';
+
+  for (let i = 0; i < 5; i++) {
+    console.log(ticket[i]);
+    if (ticket[i]) {
+      str += `<li class="game__item">${ticket[i]}</li>`;
+    } else {
+      str += `<li class="game__item"></li>`;
+    }
+  }
+
   return `<div class="game__ticket--container">
         <div class="game__ticket--header">
-          <p class="game__ticket--p"> Tiket: ${tiket}</p>
-          <p class="game__ticket--p"> Quota: ${quota}</p>
+          <p class="game__ticket--p"> Tiket: </p>
+          <p class="game__ticket--p"> Quota: </p>
         </div>
         <ul class="game__list">
-          <li class="game__item">
-        ${counter}
-          </li>
-          <li class="game__item">
-          ${counter}
-          </li>
-          <li class="game__item">
-          ${counter}
-          </li>
-          <li class="game__item">
-          ${counter}
-          </li>
-          <li class="game__item">
-          ${counter}
-          </li>
+            ${str}
         </ul>
       </div>`;
-};
-
-// template za item u listi u "popunite tiket"
-export const gameItem = counter => {
-  return `<li class="game__item">
-    ${counter}
-  </li>`;
 };
 
 // template za ball
