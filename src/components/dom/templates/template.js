@@ -1,3 +1,5 @@
+import { game__header } from '../elements/header';
+
 // template za ticket
 export const ticketTemplate = ticket => {
   let str = '';
@@ -22,8 +24,17 @@ export const ticketTemplate = ticket => {
 };
 
 // template za ball
-export const ball = counter => {
-  return `<div class="game__header--ball">
-          <p>${counter}</p>
-        </div>`;
+export const ball = (num, color) => {
+  // Kreiramo div
+  let div = document.createElement('div');
+  // Kreiramo p
+  let p = document.createElement('p');
+  // Dodeljujemo div-u class-u
+  div.classList.add('game__header--ball');
+  // Dodeljujemo p tagu text
+  p.textContent = '10';
+  // Ubacujemo P u div
+  div.appendChild(p);
+  // Sve to ubacujemo u game__header div
+  return game__header.appendChild(div);
 };

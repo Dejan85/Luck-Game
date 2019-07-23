@@ -1,12 +1,13 @@
 // elements
 import { btn } from './dom/elements/panel';
 import { selected__numbers, game__ticket } from './dom/elements/body';
+import { game__header } from './dom/elements/header';
 
 // functions
 import { showFillTicket, switchMessage } from './dom/functions';
 
 // templates
-import { ticketTemplate } from './dom/templates/template';
+import { ticketTemplate, ball } from './dom/templates/template';
 
 // messages
 import { btnText, btnText2, btnText3 } from './messages';
@@ -110,7 +111,7 @@ const app = function () {
     const arr = Array.apply(this, Array(30)).map((item, index) => index + 1);
 
     // Interval koji ce nam izvlaciti na svake 2 sekunde po jedan broj
-    const interval = setInterval(getRandomNum, 500);
+    const interval = setInterval(getRandomNum, 2000);
     // Counter koji nam sluzi da interval zna kada da se zaustavi
     let counter = 0;
 
@@ -118,13 +119,15 @@ const app = function () {
     function getRandomNum () {
       // Counter se povecava za 1 i kada dodje do 12 interval ce prestati da radi
       counter++;
-
       if (counter <= 12) {
         // Ovde generesimo random broj funkcijom random()
         let num = random();
         // Ovde ubacujemo generisan broj u glavni array
         combinations.push(num);
         console.log(combinations);
+
+        // Pozivamo fuknciju koja nam kreira kugle sa brojevima
+        ball();
       } else {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);
