@@ -24,32 +24,19 @@ export const ticketTemplate = ticket => {
 };
 
 // template za ball
-export const ball = (num, color, order) => {
+export const ball = (num, color, cssVars) => {
   // Kreiramo div
   let div = document.createElement('div');
   // Kreiramo p
   let p = document.createElement('p');
   // Dodeljujemo div-u class-u
   div.classList.add('game__header--ball');
-  div.style.order = order;
   // Dodeljujemo p tagu text
   p.textContent = '10';
   // Ubacujemo P u div
   div.appendChild(p);
-
-  // div.animate(
-  //   [
-  //     // keyframes
-  //     { transform: 'translateX(0px)' },
-  //     { transform: 'translateX(124rem)' }
-  //   ],
-  //   {
-  //     // timing options
-  //     duration: 2000
-  //     // iterations: Infinity
-  //   }
-  // );
-
+  // U css-u imamo kreiranu css variablu. Ovde tu css variblu dinamicno menjamo na svaki interval tick
+  div.style.setProperty(`--test`, `${cssVars}rem`);
   // Sve to ubacujemo u game__header div
   game__header.appendChild(div);
 };

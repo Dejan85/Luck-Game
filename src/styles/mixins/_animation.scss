@@ -1,4 +1,4 @@
-@mixin rollBall {
+@mixin rollBall($test) {
   animation-name: rolling;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
@@ -14,7 +14,7 @@
     }
 
     100% {
-      transform: translateX(124rem) rotate(10turn);
+      transform: translateX($test) rotate(10turn);
     }
   }
 }

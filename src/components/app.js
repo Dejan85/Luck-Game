@@ -114,6 +114,7 @@ const app = function () {
     const interval = setInterval(getRandomNum, 2000);
     // Counter koji nam sluzi da interval zna kada da se zaustavi
     let counter = 0;
+    let cssVars = 124;
 
     // Funkcija koja vraca random broj
     function getRandomNum () {
@@ -124,10 +125,12 @@ const app = function () {
         let num = random();
         // Ovde ubacujemo generisan broj u glavni array
         combinations.push(num);
-        console.log(combinations);
+        // console.log(combinations);
 
         // Pozivamo fuknciju koja nam kreira kugle sa brojevima
-        ball(null, null, counter);
+        ball(null, null, cssVars);
+        cssVars = cssVars - 10;
+        console.log(cssVars);
       } else {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);
