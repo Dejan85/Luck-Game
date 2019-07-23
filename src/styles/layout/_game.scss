@@ -55,6 +55,7 @@
     }
 
     &--drum {
+      position: absolute;
       background: $color-grey;
       width: 10rem;
       height: 10rem;
@@ -70,8 +71,10 @@
     }
 
     &--drum2 {
+      position: absolute;
       width: 2rem;
       height: 11rem;
+      left: 10rem;
       z-index: 2;
 
       @include gradientToRight(
@@ -85,13 +88,14 @@
 
     &--ballsHolder {
       display: flex;
+      position: absolute;
       align-items: center;
       border: 4px ridge #b0bdd1;
       border-left: none;
       height: 11rem;
-      max-width: 110rem;
+      max-width: 115rem;
       width: 100%;
-      margin-left: 15rem;
+      left: 20rem;
     }
 
     &--line {
@@ -104,14 +108,14 @@
       position: absolute;
       height: 10rem;
       border-left: 2px ridge #b0bdd1;
-      left: 45rem;
+      left: 30rem;
     }
 
     &--line3 {
       position: absolute;
       height: 10rem;
       border-left: 2px solid #b0bdd1;
-      left: 110rem;
+      left: 80rem;
     }
   }
 

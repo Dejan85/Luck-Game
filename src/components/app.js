@@ -94,7 +94,7 @@ const app = function () {
   const rollingGame = function () {
     // Vrsimo proveru da li su svi tiketi popunjeni
     if (allTickets.length === 4) {
-      // Menjamo text glavnog dugmea
+      // Menjamo text glavnog dugmeta
       btn.textContent = btnText3;
       // Smanjujemo font-size da bi text u glavnom dugmetu bio lepo prikazan
       btn.style.fontSize = '2.3rem';
@@ -127,7 +127,7 @@ const app = function () {
         console.log(combinations);
 
         // Pozivamo fuknciju koja nam kreira kugle sa brojevima
-        ball();
+        ball(null, null, counter);
       } else {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);
