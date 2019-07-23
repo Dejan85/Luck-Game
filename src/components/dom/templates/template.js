@@ -25,7 +25,6 @@ export const ticketTemplate = ticket => {
 
 // template za ball
 export const ball = (num, color, cssVars) => {
-  console.log(color);
   // Kreiramo div
   let div = document.createElement('div');
   // Kreiramo p

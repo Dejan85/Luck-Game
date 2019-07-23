@@ -37,8 +37,6 @@
       -moz-box-shadow: inset 0px 0px 18 -2px rgba(0, 0, 0, 0.75);
       box-shadow: inset 0px 0px 18px -2px rgba(0, 0, 0, 0.75);
 
-      // $test: 124rem;
-
       @include rollBall(var(--test));
 
       p {

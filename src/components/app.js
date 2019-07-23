@@ -27,6 +27,10 @@ const app = function () {
   // Dodeljuje glavnom dugmetu text
   btn.textContent = btnText;
 
+  //
+  // ─── POPUNJAVANJE TIKETA ────────────────────────────────────────────────────────
+  //
+
   const ticketHandler = function () {
     // Ogranicili smo koliko tiketa je maksimalno za popunjavanje
     if (allTickets.length !== 5) {
@@ -103,7 +107,10 @@ const app = function () {
     }
   };
 
-  // Funkcija koja upravlja izvlacenjem brojeva
+  //
+  // ─── FUNKCIJA KOJA UPRAVLJA IZVLACENJEM BROJEVA ─────────────────────────────────
+  //
+
   const playGameHandler = function () {
     // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug
     btn.onclick = null;
@@ -119,7 +126,7 @@ const app = function () {
     // Boje koje sve random swicuju po svakoj izucenoj kugli
     const colors = ['#0cc42e', '#f80001', '#ffcc0c', '#0e07f3'];
 
-    // Funkcija koja vraca random broj
+    // funkcija koja nam vraca random broj
     function getRandomNum () {
       // setuje random color koji nam sluzi dole da prosledimo funkciji za bojenje svake kugle pojedinacno
       let color = colors[Math.floor(Math.random() * colors.length)];
@@ -130,10 +137,12 @@ const app = function () {
         let num = random();
         // Ovde ubacujemo generisan broj u glavni array
         combinations.push(num);
-        // console.log(combinations);
+
+        winningCombinationHandler(num);
 
         // Pozivamo fuknciju koja nam kreira kugle sa brojevima
         ball(num, color, cssVars);
+        // Smanjuje vrednost css varijable za 10rema
         cssVars = cssVars - 10;
       } else {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
@@ -144,7 +153,7 @@ const app = function () {
         combinations = [];
       }
 
-      // Funkcija koja nam vraca random broj
+      // Funkcija koja nam generise random broj
       function random () {
         // Generisemo random broj tako sto arr-u dodajemo kao index random broj i tako dobijamo element iz ovog array-a
         let randNum = arr[Math.floor(Math.random() * arr.length)];
@@ -155,6 +164,15 @@ const app = function () {
         return randNum;
       }
     }
+  };
+
+  // funkcija koja proverava dobitne kombinacije
+  const winningCombinationHandler = function (num) {
+    allTickets.forEach(function (item, index) {
+      item.forEach((item, index) => {
+        if (item === num) console.log('imamo pogodjen broj');
+      });
+    });
   };
 
   //
