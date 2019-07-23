@@ -114,10 +114,15 @@ const app = function () {
     const interval = setInterval(getRandomNum, 2000);
     // Counter koji nam sluzi da interval zna kada da se zaustavi
     let counter = 0;
+    // Coutner koji nam sluzi da bi uticali na css variablu
     let cssVars = 124;
+    // Boje koje sve random swicuju po svakoj izucenoj kugli
+    const colors = ['#0cc42e', '#f80001', '#ffcc0c', '#0e07f3'];
 
     // Funkcija koja vraca random broj
     function getRandomNum () {
+      // setuje random color koji nam sluzi dole da prosledimo funkciji za bojenje svake kugle pojedinacno
+      let color = colors[Math.floor(Math.random() * colors.length)];
       // Counter se povecava za 1 i kada dodje do 12 interval ce prestati da radi
       counter++;
       if (counter <= 12) {
@@ -128,9 +133,8 @@ const app = function () {
         // console.log(combinations);
 
         // Pozivamo fuknciju koja nam kreira kugle sa brojevima
-        ball(null, null, cssVars);
+        ball(num, color, cssVars);
         cssVars = cssVars - 10;
-        console.log(cssVars);
       } else {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);

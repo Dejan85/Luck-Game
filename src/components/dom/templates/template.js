@@ -25,14 +25,16 @@ export const ticketTemplate = ticket => {
 
 // template za ball
 export const ball = (num, color, cssVars) => {
+  console.log(color);
   // Kreiramo div
   let div = document.createElement('div');
   // Kreiramo p
   let p = document.createElement('p');
+  p.style.background = `${color}`;
   // Dodeljujemo div-u class-u
   div.classList.add('game__header--ball');
   // Dodeljujemo p tagu text
-  p.textContent = '10';
+  p.textContent = `${num}`;
   // Ubacujemo P u div
   div.appendChild(p);
   // U css-u imamo kreiranu css variablu. Ovde tu css variblu dinamicno menjamo na svaki interval tick

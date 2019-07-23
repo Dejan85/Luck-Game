@@ -41,25 +41,6 @@
 
       @include rollBall(var(--test));
 
-      // animation-name: rolling;
-      // animation-duration: 2s;
-      // animation-timing-function: ease-in-out;
-      // //   animation-iteration-count: 5000;
-      // // animation-delay: 2s;
-      // /* Tells the animation what to-do outside */
-      // animation-fill-mode: both;
-      // //   animation-direction: alternate;
-
-      // @keyframes rolling {
-      //   0% {
-      //     transform: translateX(0) rotate(0turn);
-      //   }
-
-      //   100% {
-      //     transform: translateX(var(--test)) rotate(10turn);
-      //   }
-      // }
-
       p {
         max-width: 8rem;
         width: 100%;
