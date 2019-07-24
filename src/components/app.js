@@ -39,13 +39,10 @@ const app = function () {
       if (ticket.length < 5) {
         // proveravamo prazno polje, ako je kliknuto na prazno polje nece ubaciti broj
         if (this.textContent !== ' ') ticket.push(this.textContent);
-
         // brisemo broj sa table kada kliknem na njega
         this.textContent = ' ';
-
         // menjamo text na glavnom dugmetu
         btn.textContent = btnText2;
-
         // ubacujemo klinuti broj u izabrani brojevi
         [...selected__numbers.children].map((item, index) => {
           item.textContent = ticket[index];
@@ -129,7 +126,8 @@ const app = function () {
 
     // funkcija koja nam vraca random broj
     function getRandomNum () {
-      // setuje random color koji nam sluzi dole da prosledimo funkciji za bojenje svake kugle pojedinacno
+      // setuje random color koji nam sluzi dole da prosledimo
+      // funkciji za bojenje svake kugle pojedinacno
       let color = colors[Math.floor(Math.random() * colors.length)];
       // Counter se povecava za 1 i kada dodje do 12 interval ce prestati da radi
       counter++;
@@ -156,10 +154,12 @@ const app = function () {
 
       // Funkcija koja nam generise random broj
       function random () {
-        // Generisemo random broj tako sto arr-u dodajemo kao index random broj i tako dobijamo element iz ovog array-a
+        // Generisemo random broj tako sto arr-u dodajemo kao index random
+        // broj i tako dobijamo element iz ovog array-a
         let randNum = arr[Math.floor(Math.random() * arr.length)];
 
-        // Ovde brisemo dobijeni element iz arr-a iz razloga da ga u sledecem krugu nebi dobili kao duplikat
+        // Ovde brisemo dobijeni element iz arr-a iz razloga
+        // da ga u sledecem krugu nebi dobili kao duplikat
         arr.splice(arr.indexOf(randNum), 1);
 
         return randNum;
@@ -180,7 +180,8 @@ const app = function () {
         // numInTicket nam je broj u tiketu koji smo pogodili
         if (item == num) {
           // Prolazimo kroz html elemente. Svaki je u formi <ul>5x<li>u</ul>.
-          // Ticketom dobijamno koja lista je dobijena, a numInTicket-tom u listi koji je broj izvucen.
+          // Ticket-om dobijamno koja lista je dobijena,
+          // a numInTicket-tom u listi koji je broj izvucen.
           // Dobijenom rezultatu dodajemo css style
           select__ticket[ticket].children[numInTicket].setAttribute(
             'style',
@@ -190,22 +191,34 @@ const app = function () {
       });
     });
 
+    // Kada su svi brojevi izvuceni
     if (counter === 12) {
+      // Ovde proalzimo kroz sve tiketa
       for (let i = 0; i < allTickets.length; i++) {
+        // Ovde prolazimo kroz sve izvucene brojeve
         for (let x = 0; x < combinations.length; x++) {
+          // Ovde prolazimo kroz svaki tiket pojedinacno
           for (let y = 0; y < allTickets[i].length; y++) {
+            // Proveravamo izvuceni brojeve sa brojevima iz tiketa
             if (combinations[x] == allTickets[i][y]) {
+              // Ako smo pogodili broj, u taj tiket (array) umesto broja postavljamo vrednost true
               allTickets[i][y] = true;
             }
           }
         }
       }
 
+      // Prolazimo kroz sve tikete
       allTickets.forEach((item, index) => {
-        item.forEach((item2, index2) => {
+        // Prolazimo kroz svaki tiket posebno
+        item.forEach(item2 => {
+          // Proveravamo vrednost u tiketu da li je string (ako je string znaci da je ostao broj koji nismo pogodili)
+          // Ako je true imamo pogodjen broj
           if (typeof item2 === 'string') {
+            // Na osnovu gore dobijenog resultata, ako imamo da je item2 === string,
+            // znaci da tiket nije dobijen i bojimo ga u crveno
             [...select__ticket[index].children].forEach(item => {
-              item.setAttribute('style', 'color: white; background: red');
+              item.setAttribute('style', 'color: white; background: #ff0000;');
             });
           }
         });
