@@ -57,22 +57,18 @@ const app = function () {
 
   const addTicketHandler = function () {
     // Proveravamo da li je svih 5 tiketa popunjeno
-    if (allTickets.length !== 5) {
+    // Takodje proveravamo da li je ticket popunjen da nebi mogli da ubacimo prazan tiket
+    if (allTickets.length !== 5 && ticket.length >= 1) {
       // Prikzuje svaki tiket pojedinacno
       showTicketHandler();
-
       // Krece izvlacenje brojeva
       rollingGame();
-
-      // resetujemo brojeve na tabli
+      // prikazujemo brojeve na "Popunite tiket"
       showFillTicket(ticketHandler);
-
       // ubacujemo sve tikete u glavni array
       allTickets.push(ticket);
-
       // praznimo array posle potvrdjivanja tiketa
       ticket = [];
-
       // brisemo brojeve iz  tabele izabrani brojevi posle potvrdjivanja tiekta
       [...selected__numbers.children].map(item => {
         item.textContent = '';
