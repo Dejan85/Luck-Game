@@ -208,7 +208,8 @@ const app = function () {
       allTickets.forEach((item, index) => {
         // Prolazimo kroz svaki tiket posebno
         item.forEach(item2 => {
-          // Proveravamo vrednost u tiketu da li je string (ako je string znaci da je ostao broj koji nismo pogodili)
+          // Proveravamo vrednost u tiketu da li je string (ako je string
+          // znaci da je ostao broj koji nismo pogodili)
           // Ako je true imamo pogodjen broj
           if (typeof item2 === 'string') {
             // Na osnovu gore dobijenog resultata, ako imamo da je item2 === string,
