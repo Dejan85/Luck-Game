@@ -17,7 +17,7 @@ export const ticketTemplate = ticket => {
           <p class="game__ticket--p"> Tiket: </p>
           <p class="game__ticket--p"> Quota: </p>
         </div>
-        <ul class="game__list">
+        <ul class="game__list" id="select__ticket">
             ${str}
         </ul>
       </div>`;

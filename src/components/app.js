@@ -21,8 +21,9 @@ const app = function () {
   let ticket = [];
   // Glavni array gde smestamo sve tikete
   let allTickets = [];
-  // Prikazuje pocetnu poruku dole na panelu
+  // Izvucene kombinacije
   let combinations = [];
+  // Prikazuje pocetnu poruku dole na panelu
   switchMessage();
   // Dodeljuje glavnom dugmetu text
   btn.textContent = btnText;
@@ -122,7 +123,7 @@ const app = function () {
     // Counter koji nam sluzi da interval zna kada da se zaustavi
     let counter = 0;
     // Coutner koji nam sluzi da bi uticali na css variablu
-    let cssVars = 124;
+    let cssVars = 124.5;
     // Boje koje sve random swicuju po svakoj izucenoj kugli
     const colors = ['#0cc42e', '#f80001', '#ffcc0c', '#0e07f3'];
 
@@ -138,7 +139,7 @@ const app = function () {
         // Ovde ubacujemo generisan broj u glavni array
         combinations.push(num);
 
-        winningCombinationHandler(num);
+        winningCombinationHandler(num, counter);
 
         // Pozivamo fuknciju koja nam kreira kugle sa brojevima
         ball(num, color, cssVars);
@@ -167,12 +168,49 @@ const app = function () {
   };
 
   // funkcija koja proverava dobitne kombinacije
-  const winningCombinationHandler = function (num) {
-    allTickets.forEach(function (item, index) {
-      item.forEach((item, index) => {
-        if (item === num) console.log('imamo pogodjen broj');
+  const winningCombinationHandler = function (num, counter) {
+    // Selektujemo liste, i koristimo spred operator da bi dobili array umesto node list.
+    const select__ticket = [...document.querySelectorAll('#select__ticket')];
+    // Ovde prolazimo kroz sve kombinacije
+    allTickets.forEach(function (ele, ticket) {
+      // Ovde prolazimo kroz svaku kombinaciju posebno.
+      // Ticket nam je koji je tiket.
+      ele.forEach((item, numInTicket) => {
+        // Proveravamo da li je element u pojedinacnom array-u jednak izvucenom broju.
+        // numInTicket nam je broj u tiketu koji smo pogodili
+        if (item == num) {
+          // Prolazimo kroz html elemente. Svaki je u formi <ul>5x<li>u</ul>.
+          // Ticketom dobijamno koja lista je dobijena, a numInTicket-tom u listi koji je broj izvucen.
+          // Dobijenom rezultatu dodajemo css style
+          select__ticket[ticket].children[numInTicket].setAttribute(
+            'style',
+            'color: white; background:#81c405'
+          );
+        }
       });
     });
+
+    if (counter === 12) {
+      for (let i = 0; i < allTickets.length; i++) {
+        for (let x = 0; x < combinations.length; x++) {
+          for (let y = 0; y < allTickets[i].length; y++) {
+            if (combinations[x] == allTickets[i][y]) {
+              allTickets[i][y] = true;
+            }
+          }
+        }
+      }
+
+      allTickets.forEach((item, index) => {
+        item.forEach((item2, index2) => {
+          if (typeof item2 === 'string') {
+            [...select__ticket[index].children].forEach(item => {
+              item.setAttribute('style', 'color: white; background: red');
+            });
+          }
+        });
+      });
+    }
   };
 
   //

@@ -24,7 +24,7 @@
     );
 
     &--ball {
-      --test: 124rem;
+      --test: 130rem;
 
       position: absolute;
       background: white;
@@ -187,6 +187,8 @@
     border: 1px solid $color-grey;
     cursor: pointer;
     user-select: none;
+    transition: all 1s;
+    transition-delay: 2s;
   }
 
   &__rewards {
