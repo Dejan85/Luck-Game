@@ -117,14 +117,11 @@ const app = function () {
     let counter = 0;
     // Coutner koji nam sluzi da bi uticali na css variablu
     let cssVars = 124.5;
-    // Boje koje sve random swicuju po svakoj izucenoj kugli
-    const colors = ['#0cc42e', '#f80001', '#ffcc0c', '#0e07f3'];
-
     // funkcija koja nam vraca random broj
     function getRandomNum () {
       // setuje random color koji nam sluzi dole da prosledimo
       // funkciji za bojenje svake kugle pojedinacno
-      let color = colors[Math.floor(Math.random() * colors.length)];
+      let color = `#${Math.random().toString(16).substring(2, 8)}`;
       // Counter se povecava za 1 i kada dodje do 12 interval ce prestati da radi
       counter++;
       if (counter <= 12) {
