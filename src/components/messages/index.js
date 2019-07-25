@@ -4,9 +4,10 @@ export const welcome2 =
   'Popunite tiket. Treba da popunite 5 tiketa. Mozete izabrati minimalno 1 a maksimalno 5 brojeva. Svaki tiket kosta 100$. Takodje mozete uloziti dodatni novac. Serecno!';
 
 // playing msg
-export const msg = broj => {
-  let text = `Popunjavate prvi tiket`;
-  return text;
+export const msg3 = param => {
+  if (param === 1) {
+    return 'Pocinje izvlacenje. Srecno!';
+  }
 };
 
 // btns

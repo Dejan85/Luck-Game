@@ -24,7 +24,7 @@ const app = function () {
   // Izvucene kombinacije
   let combinations = [];
   // Prikazuje pocetnu poruku dole na panelu
-  switchMessage();
+  switchMessage('welcome');
   // Dodeljuje glavnom dugmetu text
   btn.textContent = btnText;
 
@@ -106,6 +106,7 @@ const app = function () {
   //
 
   const playGameHandler = function () {
+    switchMessage('msg3');
     // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug
     btn.onclick = null;
     // Kreiramo arr sa 30 brojeva koji ce nam sluziti kao brojcanik
