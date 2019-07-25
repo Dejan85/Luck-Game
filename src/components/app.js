@@ -1,7 +1,6 @@
 // elements
 import { btn } from './dom/elements/panel';
 import { selected__numbers, game__ticket } from './dom/elements/body';
-import { game__header } from './dom/elements/header';
 
 // functions
 import { showFillTicket, switchMessage } from './dom/functions';
@@ -10,7 +9,7 @@ import { showFillTicket, switchMessage } from './dom/functions';
 import { ticketTemplate, ball } from './dom/templates/template';
 
 // messages
-import { btnText, btnText2, btnText3 } from './messages';
+import { btnText, btnText2, btnText3, msg } from './messages';
 
 //
 // ─── MAIN FUN ───────────────────────────────────────────────────────────────────
@@ -24,7 +23,7 @@ const app = function () {
   // Izvucene kombinacije
   let combinations = [];
   // Prikazuje pocetnu poruku dole na panelu
-  switchMessage('welcome');
+  switchMessage(1, msg(1));
   // Dodeljuje glavnom dugmetu text
   btn.textContent = btnText;
 
@@ -106,7 +105,7 @@ const app = function () {
   //
 
   const playGameHandler = function () {
-    switchMessage('msg3');
+    switchMessage(3, msg(3));
     // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug
     btn.onclick = null;
     // Kreiramo arr sa 30 brojeva koji ce nam sluziti kao brojcanik
@@ -221,6 +220,8 @@ const app = function () {
           }
         });
       });
+
+      switchMessage(4, msg(4));
     }
   };
 

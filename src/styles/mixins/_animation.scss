@@ -19,24 +19,24 @@
   }
 }
 
-@mixin text {
+@mixin text($margin1, $margin2, $width, $duration) {
   animation-name: slide-left;
-  animation-duration: 20s;
+  animation-duration: $duration;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 
   position: absolute;
   height: 2.5rem;
   overflow: hidden;
-  width: 200rem;
+  width: $width;
 
   @keyframes slide-left {
     0% {
-      margin-left: 280%;
+      margin-left: $margin1;
     }
 
     100% {
-      margin-left: -200%;
+      margin-left: $margin2;
     }
   }
 }

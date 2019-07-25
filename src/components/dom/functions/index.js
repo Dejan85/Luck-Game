@@ -1,5 +1,5 @@
 // message
-import { welcome, welcome2, msg3 } from '../../messages/index';
+import { msg } from '../../messages/index';
 
 // elements
 import { fill__ticket, game__list, selected__numbers } from '../elements/body';
@@ -11,7 +11,7 @@ import { game__panel__input } from '../elements/panel';
 
 export const showFillTicket = fun => {
   // Pozivamo funckiju za ispivanje poruke u panel
-  switchMessage('msg2');
+  switchMessage(2, msg(2));
   // Postavljamo ticket u block kako bi bio vidljiv
   fill__ticket.style.display = 'block';
   // Kreiramo prazan string
@@ -50,22 +50,27 @@ export const showSelectNumbersList = function () {
 // ─── MENJA PORUKU KOJA SE PRIKAZUJE DOLE U PANELU ───────────────────────────────
 //
 
-export const switchMessage = msg => {
+export const switchMessage = (num, msg) => {
   // Proverava koji poruku treba da prikaze
-  if (msg === 'welcome') {
+  if (num === 1) {
     // Priakzuje poruku
-    game__panel__input.children[0].textContent = welcome;
+    game__panel__input.children[0].textContent = msg;
     // Proverava koji poruku treba da prikaze
-  } else if (msg === 'msg2') {
+  } else if (num === 2) {
     // Dodaje css klasu koja nam daje animaciju
     game__panel__input.children[0].classList.add('textAnimate');
     // Ispisuje poruku
-    game__panel__input.children[0].textContent = welcome2;
+    game__panel__input.children[0].textContent = msg;
     // Proverava koji poruku treba da prikaze
-  } else if (msg === 'msg3') {
+  } else if (num === 3) {
     // Brise css clasu za animaciju posto nam ovde ne treba animacija
     game__panel__input.children[0].classList.remove('textAnimate');
     // Ispisuje poruku
-    game__panel__input.children[0].textContent = msg3(1);
+    game__panel__input.children[0].textContent = msg;
+  } else if (num === 4) {
+    // Brise css clasu za animaciju posto nam ovde ne treba animacija
+    game__panel__input.children[0].classList.add('textAnimate');
+    // Ispisuje poruku
+    game__panel__input.children[0].textContent = msg;
   }
 };
