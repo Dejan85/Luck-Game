@@ -139,6 +139,7 @@ const app = function () {
   //
 
   const rollingGame = function () {
+    console.log('rolling game radi');
     // Vrsimo proveru da li su svi tiketi popunjeni
     if (allTickets.length === 4) {
       // Menjamo text glavnog dugmeta
@@ -180,6 +181,7 @@ const app = function () {
         // Ovde ubacujemo generisan broj u glavni array
         combinations.push(num);
 
+        // Pozivamo funkciju koja nam racuna dobijemo izgubljeno
         winningCombinationHandler(num, counter);
 
         // Pozivamo fuknciju koja nam kreira kugle sa brojevima
@@ -268,14 +270,16 @@ const app = function () {
 
             // Ovde postavljamo ceo arra-y koji predstavlja ticket u false
             // Ovo nam treba da bi znali koliko dobitnih tiketa imamo
-            allTickets[index] = false;
+            // allTickets[index] = false;
           }
         });
       });
 
       // funkcija koja proverava dobitnne tikete
       winingTicketHandler();
+      // Menjamo text btn-u
       btn.textContent = btnText4;
+      // Dodeljujemo btn-u ponovo handler
       btn.onclick = btnHandler;
     }
   };
@@ -285,25 +289,37 @@ const app = function () {
   //
 
   const winingTicketHandler = function () {
+    // Pobednicki tiketi
     const winingTickets = [];
+    // Koliko smo dobili novca
     let winingMoney = 0;
 
+    // Prolazimo kroz sve tikete
     allTickets.forEach(item => {
+      // i proveravamo da li je ticket true
       if (typeof item === 'object') {
+        // ako jeste prebacujemo ga u arr gde drzimo sve pobednicke tikete
         winingTickets.push(item);
       }
     });
 
+    // Prolazimo kroz pobednicke tikete
     winingTickets.forEach(item => {
       if (item.length === 1) {
+        // Ako tiket ima jedan broj vrednost mu je 15
         calc(15);
       } else if (item.length === 2) {
+        // Ako tiket ima dva broja vrednost mu je 25
         calc(25);
       } else if (item.length === 3) {
+        // Ako tiket ima tri broja vrednost mu je 35
         calc(35);
       } else if (item.length === 4) {
+        // Ako tiket ima cetiri broja vrednost mu je 60
         calc(60);
       } else if (item.length === 5) {
+        // Ako tiket ima pet brojeva vrednost mu je 100
+        // I to nam je ujedno i bingo
         calc(100);
       }
     });
@@ -321,21 +337,13 @@ const app = function () {
 
     // Funkcija koja nam racuna dobijene kombinacije
     function calc (num) {
-      // Vraca nam 10 * broj za koliko uvecavamo dobitak u zavisnosti od quota
+      // Vraca nam 10 * broj za koliko uvecavamo dobitak u zavisnosti od quote
       // pa plus ponovo dobijene pare zbog da bi se sabirali svi zbirovi
       return (winingMoney = 10 * num + winingMoney);
     }
 
     // Prikazujemo na panelu poruku
     switchMessage(4, msg(4, winingMoney));
-
-    allTickets = [
-      [1, 2, 3, 4, 5],
-      [1, 2, 3, 4, 5],
-      [1, 2, 3, 4, 5],
-      [1, 2, 3, 4, 5],
-      [1, 2, 3, 4, 5]
-    ];
   };
 
   //
@@ -343,9 +351,36 @@ const app = function () {
   //
 
   const playAgainHandler = function () {
+    // Selektujemo sve kugle
+    let balls = [...document.querySelectorAll('.game__header--ball')];
+    // Prolazimo kroz kugle
+    balls.forEach(item => {
+      // Od svake kugle nalazimo roditelja, i onda brisemo trenutnu kuglu
+      item.parentNode.removeChild(item);
+    });
+
+    // Oduzimamo od ukupnog novca onih 100$ po uplacenom tiketu
+    money = money - 500;
+    // Upisujemo promenu u html
+    game__panel__money.children[1].textContent = money;
+
+    // Selektujemo sve tickete u html-u
+    const select__ticket = [...document.querySelectorAll('#select__ticket')];
+
+    allTickets = select__ticket.map((item, index) => {
+      return [...item.children].map((item2, index2) => {
+        item2.setAttribute('style', 'color: #4C4C4C; background: white;');
+        if (item2.textContent != '') {
+          return parseInt(item2.textContent);
+        } else {
+          return item2.textContent;
+        }
+      });
+    });
+
     console.log(allTickets);
-    console.log(game__header);
-    console.log(game__ticket);
+
+    playGameHandler();
   };
 
   //
@@ -361,7 +396,6 @@ const app = function () {
     if (btn.textContent === btnText3) rollingGame();
     // Pokrece funkciju koja sluzi za ponovo izvlacenje brojeva
     if (btn.textContent === btnText4) playAgainHandler();
-    console.log(btn.textContent);
   };
 
   btn.onclick = btnHandler;
