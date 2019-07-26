@@ -1,20 +1,20 @@
 // dom elements
-import { btn } from "./dom/elements/panel";
-import { selected__numbers, game__ticket } from "./dom/elements/body";
+import { btn } from './dom/elements/panel';
+import { selected__numbers, game__ticket } from './dom/elements/body';
 import {
   game__panel__money,
   game__panel__bet,
-  score,
-} from "./dom/elements/panel";
+  score
+} from './dom/elements/panel';
 
 // functions
-import { showFillTicket, switchMessage } from "./dom/functions";
+import { showFillTicket, switchMessage } from './dom/functions';
 
 // templates
-import { ticketTemplate, ball } from "./dom/templates/template";
+import { ticketTemplate, ball } from './dom/templates/template';
 
 // messages
-import { btnText, btnText2, btnText3, msg } from "./messages";
+import { btnText, btnText2, btnText3, msg } from './messages';
 
 //
 // ─── MAIN FUN ───────────────────────────────────────────────────────────────────
@@ -52,14 +52,20 @@ const app = function () {
   game__panel__bet.children[0].onkeyup = function (e) {
     // Ako smo pritisnuli enter radi sledece...
     if (e.keyCode === 13) {
+      // Ovde pravimo error handler. Ako korisnik upise vise novca nego sto ima
+      // ispisace mu u panelu da nema toliko novca
+      if (parseInt(e.target.value) > money) {
+        return switchMessage(7, msg(7));
+      }
       // Dodeljuje vrednost ili ulozen broj
-      betMoney = e.target.value;
+      // Takodje ga parsujemo u broj posto sa e.target.value dobijamo string
+      betMoney = parseInt(e.target.value);
       // Oduzima ulozeno od ukupnog novca
       money = money - e.target.value;
       // Ispisujemo promenu u html-u
       game__panel__money.children[1].textContent = money;
       // Ispisujemo promenu takodje u html u score prikaz
-      score[0].textContent = betMoney + "$";
+      score[0].textContent = betMoney + '$';
       // Ispisujemo poruku
       switchMessage(6, msg(6, betMoney));
     }
@@ -75,9 +81,9 @@ const app = function () {
       // Ogranicili smo koliko brojeva je max za izvlacenje
       if (ticket.length < 5) {
         // proveravamo prazno polje, ako je kliknuto na prazno polje nece ubaciti broj
-        if (this.textContent !== " ") ticket.push(this.textContent);
+        if (this.textContent !== ' ') ticket.push(this.textContent);
         // brisemo broj sa table kada kliknem na njega
-        this.textContent = " ";
+        this.textContent = ' ';
         // menjamo text na glavnom dugmetu
         btn.textContent = btnText2;
         // ubacujemo klinuti broj u izabrani brojevi
@@ -113,7 +119,7 @@ const app = function () {
       ticket = [];
       // brisemo brojeve iz  tabele izabrani brojevi posle potvrdjivanja tiekta
       [...selected__numbers.children].map(item => {
-        item.textContent = "";
+        item.textContent = '';
       });
     }
   };
@@ -137,7 +143,7 @@ const app = function () {
       // Menjamo text glavnog dugmeta
       btn.textContent = btnText3;
       // Smanjujemo font-size da bi text u glavnom dugmetu bio lepo prikazan
-      btn.style.fontSize = "2.3rem";
+      btn.style.fontSize = '2.3rem';
       // Dodeljujemo glavnom dugmetu novi event
       btn.onclick = playGameHandler;
     }
@@ -161,12 +167,10 @@ const app = function () {
     // Coutner koji nam sluzi da bi uticali na css variablu
     let cssVars = 124.5;
     // funkcija koja nam vraca random broj
-    function getRandomNum() {
+    function getRandomNum () {
       // setuje random color koji nam sluzi dole da prosledimo
       // funkciji za bojenje svake kugle pojedinacno
-      let color = `#${Math.random()
-        .toString(16)
-        .substring(2, 8)}`;
+      let color = `#${Math.random().toString(16).substring(2, 8)}`;
       // Counter se povecava za 1 i kada dodje do 12 interval ce prestati da radi
       counter++;
       if (counter <= 12) {
@@ -191,7 +195,7 @@ const app = function () {
       }
 
       // Funkcija koja nam generise random broj
-      function random() {
+      function random () {
         // Generisemo random broj tako sto arr-u dodajemo kao index random
         // broj i tako dobijamo element iz ovog array-a
         let randNum = arr[Math.floor(Math.random() * arr.length)];
@@ -208,7 +212,7 @@ const app = function () {
   // funkcija koja proverava dobitne kombinacije
   const winningCombinationHandler = function (num, counter) {
     // Selektujemo liste, i koristimo spred operator da bi dobili array umesto node list.
-    const select__ticket = [...document.querySelectorAll("#select__ticket")];
+    const select__ticket = [...document.querySelectorAll('#select__ticket')];
     // Ovde prolazimo kroz sve kombinacije
     allTickets.forEach(function (ele, ticket) {
       // Ovde prolazimo kroz svaku kombinaciju posebno.
@@ -222,8 +226,8 @@ const app = function () {
           // a numInTicket-tom u listi koji je broj izvucen.
           // Dobijenom rezultatu dodajemo css style
           select__ticket[ticket].children[numInTicket].setAttribute(
-            "style",
-            "color: white; background:#81c405"
+            'style',
+            'color: white; background:#81c405'
           );
         }
       });
@@ -254,11 +258,11 @@ const app = function () {
           // znaci da je ostao broj koji nismo pogodili)
           // Ako je true imamo pogodjen broj
 
-          if (typeof item2 === "string") {
+          if (typeof item2 === 'string') {
             // Na osnovu gore dobijenog resultata, ako imamo da je item2 === string,
             // znaci da tiket nije dobijen i bojimo ga u crveno
             [...select__ticket[index].children].forEach(item => {
-              item.setAttribute("style", "color: white; background: #ff0000;");
+              item.setAttribute('style', 'color: white; background: #ff0000;');
             });
 
             // Ovde postavljamo ceo arra-y koji predstavlja ticket u false
@@ -281,13 +285,13 @@ const app = function () {
     const winingTickets = [];
     let winingMoney = 0;
 
-    allTickets.forEach((item, index) => {
-      if (typeof item === "object") {
+    allTickets.forEach(item => {
+      if (typeof item === 'object') {
         winingTickets.push(item);
       }
     });
 
-    winingTickets.forEach((item, index) => {
+    winingTickets.forEach(item => {
       if (item.length === 1) {
         calc(15);
       } else if (item.length === 2) {
@@ -301,21 +305,23 @@ const app = function () {
       }
     });
 
-    console.log(winingMoney);
-
-    winingMoney = winingMoney + betMoney;
+    // Ukoliko nismo pogodili nijedan tiket, winingMoney ce biti 0
+    // i samim tim na dobijeni novac necemo moci da dodelimo ulozeni novac.
+    if (winingMoney != 0) {
+      // Pare koje smo dobili dobijamo tako sto saberemo dobijene pare i ulozene pare
+      winingMoney = winingMoney + betMoney * 2;
+    }
+    // Ukupne pare dobijamo ovde tako sto saberemo ukupne pare i dobijene pare
     money = money + winingMoney;
+    // Ovde ukupne pare upisujemo u html
     game__panel__money.children[1].textContent = money;
 
-    console.log(winingMoney);
-
     // Funkcija koja nam racuna dobijene kombinacije
-    function calc(num) {
+    function calc (num) {
       // Vraca nam 10 * broj za koliko uvecavamo dobitak u zavisnosti od quota
       // pa plus ponovo dobijene pare zbog da bi se sabirali svi zbirovi
-      return (winingMoney = (10 * num) + winingMoney);
+      return (winingMoney = 10 * num + winingMoney);
     }
-
 
     // Prikazujemo na panelu poruku
     switchMessage(4, msg(4, winingMoney));
