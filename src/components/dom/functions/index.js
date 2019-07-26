@@ -1,9 +1,9 @@
 // message
-import { msg } from '../../messages/index';
+import { msg } from "../../messages/index";
 
 // elements
-import { fill__ticket, game__list, selected__numbers } from '../elements/body';
-import { game__panel__input } from '../elements/panel';
+import { fill__ticket, game__list, selected__numbers } from "../elements/body";
+import { game__panel__input } from "../elements/panel";
 
 //
 // ─── PRIKAZUJE KOMPLETNU TABELU SA KOJE BIRAMO BROJEVE ZA TIKET ─────────────────
@@ -13,7 +13,7 @@ export const showFillTicket = fun => {
   // Pozivamo funckiju za ispivanje poruke u panel
   switchMessage(2, msg(2));
   // Postavljamo ticket u block kako bi bio vidljiv
-  fill__ticket.style.display = 'block';
+  fill__ticket.style.display = "block";
   // Kreiramo prazan string
   let str = ``;
   // Ovde kreiramo 30 brojeva iz kojih cemo praviti kombinaciju tiketa
@@ -35,7 +35,7 @@ export const showFillTicket = fun => {
 // ─── POPUNJAVA LISTE U TABELI IZABRANI BROJEVI ──────────────────────────────────
 //
 
-export const showSelectNumbersList = function () {
+export const showSelectNumbersList = function() {
   // Kreiramo prazan string
   let str = ``;
   // Ubacujemo u str 5 puta template koji smo dole kreirali
@@ -58,18 +58,26 @@ export const switchMessage = (num, msg) => {
     // Proverava koji poruku treba da prikaze
   } else if (num === 2) {
     // Dodaje css klasu koja nam daje animaciju
-    game__panel__input.children[0].classList.add('textAnimate');
+    game__panel__input.children[0].classList.add("textAnimate");
     // Ispisuje poruku
     game__panel__input.children[0].textContent = msg;
     // Proverava koji poruku treba da prikaze
   } else if (num === 3) {
     // Brise css clasu za animaciju posto nam ovde ne treba animacija
-    game__panel__input.children[0].classList.remove('textAnimate');
+    game__panel__input.children[0].classList.remove("textAnimate");
     // Ispisuje poruku
     game__panel__input.children[0].textContent = msg;
   } else if (num === 4) {
+    // Dodaje css klasu koja nam daje animaciju
+    // game__panel__input.children[0].classList.add('textAnimate');
+    // Ispisuje poruku
+    game__panel__input.children[0].textContent = msg;
+  } else if (num === 5) {
     // Brise css clasu za animaciju posto nam ovde ne treba animacija
-    game__panel__input.children[0].classList.add('textAnimate');
+    game__panel__input.children[0].classList.remove("textAnimate");
+    // Ispisuje poruku
+    game__panel__input.children[0].textContent = msg;
+  } else if (num === 6) {
     // Ispisuje poruku
     game__panel__input.children[0].textContent = msg;
   }
