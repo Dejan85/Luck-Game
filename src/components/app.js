@@ -139,7 +139,6 @@ const app = function () {
   //
 
   const rollingGame = function () {
-    console.log('rolling game radi');
     // Vrsimo proveru da li su svi tiketi popunjeni
     if (allTickets.length === 4) {
       // Menjamo text glavnog dugmeta
@@ -163,7 +162,7 @@ const app = function () {
     const arr = Array.apply(this, Array(30)).map((item, index) => index + 1);
 
     // Interval koji ce nam izvlaciti na svake 2 sekunde po jedan broj
-    const interval = setInterval(getRandomNum, 10);
+    const interval = setInterval(getRandomNum, 2000);
     // Counter koji nam sluzi da interval zna kada da se zaustavi
     let counter = 0;
     // Coutner koji nam sluzi da bi uticali na css variablu
@@ -270,7 +269,7 @@ const app = function () {
 
             // Ovde postavljamo ceo arra-y koji predstavlja ticket u false
             // Ovo nam treba da bi znali koliko dobitnih tiketa imamo
-            // allTickets[index] = false;
+            allTickets[index] = false;
           }
         });
       });
@@ -364,22 +363,57 @@ const app = function () {
     // Upisujemo promenu u html
     game__panel__money.children[1].textContent = money;
 
-    // Selektujemo sve tickete u html-u
+    // slektujemo sve ticket-e
     const select__ticket = [...document.querySelectorAll('#select__ticket')];
+    // Prolazimo kroz svaki posebno
+    // allTickets = select__ticket.map(item => {
+    //   // Prolazimo kroz svaki broj posebno
+    //   return [...item.children].map(item2 => {
+    //     // Vracamo style na pocetno stanje
+    //     item2.setAttribute(
+    //       'style',
+    //       'color: #4C4C4C; background: white; transition: none;'
+    //     );
+    //     // Ako ima broj, vraticemo broj
+    //     // Ovde treba da pazis, nikako nesmes da uradis parseInt zato
+    //     // sto na pocetku brojevi koje punis u tickete su typeof string.
+    //     // String su iz razloga sto kasnije pogodjen broj prebacujes u true i
+    //     // pogodjene brojeve trazis tako sto obacujes brojeve koji su typeof string
+    //     if (item2.textContent != '') {
+    //       return item2.textContent;
+    //     } else {
+    //       return null;
+    //     }
+    //   });
+    // });
 
-    allTickets = select__ticket.map((item, index) => {
-      return [...item.children].map((item2, index2) => {
-        item2.setAttribute('style', 'color: #4C4C4C; background: white;');
+    allTickets = [];
+
+    // Prolazimo kroz svaki posebno
+    select__ticket.forEach((item, index) => {
+      // Vracamo allTikets na pocetno stanje
+      allTickets.push([]);
+      // Prolazimo kroz svaki broj posebno
+      [...item.children].forEach((item2, index2) => {
+        // Vracamo style na pocetno stanje
+        item2.setAttribute(
+          'style',
+          'color: #4C4C4C; background: white; transition: none;'
+        );
+        // Ako ima broj, vraticemo broj
+        // Ovde treba da pazis, nikako nesmes da uradis parseInt zato
+        // sto na pocetku brojevi koje punis u tickete su typeof string.
+        // String su iz razloga sto kasnije pogodjen broj prebacujes u true i
+        // pogodjene brojeve trazis tako sto obacujes brojeve koji su typeof string
         if (item2.textContent != '') {
-          return parseInt(item2.textContent);
-        } else {
-          return item2.textContent;
+          allTickets[index].push(item2.textContent);
         }
       });
     });
 
-    console.log(allTickets);
+    // console.log(test);
 
+    // Ponovo izvlacimo brojeve
     playGameHandler();
   };
 
