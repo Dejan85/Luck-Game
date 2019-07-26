@@ -22,3 +22,4 @@ export const msg = (param, param2) => {
 export const btnText = 'IGRAJ!';
 export const btnText2 = 'DODAJ!';
 export const btnText3 = 'POCNI IZVLACENJE!';
+export const btnText4 = 'IZVLACI PONOVO';

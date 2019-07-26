@@ -1,11 +1,12 @@
 // dom elements
-import { btn } from './dom/elements/panel';
 import { selected__numbers, game__ticket } from './dom/elements/body';
 import {
+  btn,
   game__panel__money,
   game__panel__bet,
   score
 } from './dom/elements/panel';
+import { game__header } from './dom/elements/header';
 
 // functions
 import { showFillTicket, switchMessage } from './dom/functions';
@@ -14,7 +15,7 @@ import { showFillTicket, switchMessage } from './dom/functions';
 import { ticketTemplate, ball } from './dom/templates/template';
 
 // messages
-import { btnText, btnText2, btnText3, msg } from './messages';
+import { btnText, btnText2, btnText3, btnText4, msg } from './messages';
 
 //
 // ─── MAIN FUN ───────────────────────────────────────────────────────────────────
@@ -134,7 +135,7 @@ const app = function () {
   };
 
   //
-  // ─── IZVLACENJE TIKETA ──────────────────────────────────────────────────────────
+  // ─── INICIJALIZOVANJE FUNKCIJE ZA POCETAK IGRE TIKETA ──────────────────────────────────────────────────────────
   //
 
   const rollingGame = function () {
@@ -155,7 +156,7 @@ const app = function () {
 
   const playGameHandler = function () {
     switchMessage(3, msg(3));
-    // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug
+    // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug duplog izvlacenja
     btn.onclick = null;
     // Kreiramo arr sa 30 brojeva koji ce nam sluziti kao brojcanik
     const arr = Array.apply(this, Array(30)).map((item, index) => index + 1);
@@ -189,7 +190,7 @@ const app = function () {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);
         // Vracamo klick kako bi mogao korisnik ponovo mogao da pokrene izvlacenje
-        btn.onclick = playGameHandler;
+        // btn.onclick = playGameHandler;
         // Praznimo array combinations kako bi mogli da izvlacimo nove brojeve
         combinations = [];
       }
@@ -274,6 +275,8 @@ const app = function () {
 
       // funkcija koja proverava dobitnne tikete
       winingTicketHandler();
+      btn.textContent = btnText4;
+      btn.onclick = btnHandler;
     }
   };
 
@@ -325,20 +328,43 @@ const app = function () {
 
     // Prikazujemo na panelu poruku
     switchMessage(4, msg(4, winingMoney));
+
+    allTickets = [
+      [1, 2, 3, 4, 5],
+      [1, 2, 3, 4, 5],
+      [1, 2, 3, 4, 5],
+      [1, 2, 3, 4, 5],
+      [1, 2, 3, 4, 5]
+    ];
   };
 
   //
-  // ─── GLAVNO DUGME NA KOJE KLIKCEMO ──────────────────────────────────────────────
+  // ─── FUNKCIJA KOJA PONOVO IZVLACI BROJEVE ───────────────────────
   //
 
-  btn.onclick = function () {
+  const playAgainHandler = function () {
+    console.log(allTickets);
+    console.log(game__header);
+    console.log(game__ticket);
+  };
+
+  //
+  // ─── FUNKCIJA KOJA UPRAVLLJA KLIKOVIMA GLAVNOG DUGMETA──────────────────────────────────────────────
+  //
+
+  const btnHandler = function () {
     // Prikazuje tablu sa koje briramo brojeve
     if (btn.textContent === btnText) showFillTicket(ticketHandler);
     // Pokrece funkciju koja sluzi za popunjavanje i cekiranje tiketa
     if (btn.textContent === btnText2) addTicketHandler();
     // Pokrece funkciju koja sluzi za izvlacenje brojeva
     if (btn.textContent === btnText3) rollingGame();
+    // Pokrece funkciju koja sluzi za ponovo izvlacenje brojeva
+    if (btn.textContent === btnText4) playAgainHandler();
+    console.log(btn.textContent);
   };
+
+  btn.onclick = btnHandler;
 };
 
 export default app;
