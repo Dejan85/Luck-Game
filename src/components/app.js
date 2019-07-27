@@ -55,7 +55,9 @@ const app = function () {
     if (e.keyCode === 13) {
       // Ovde pravimo error handler. Ako korisnik upise vise novca nego sto ima
       // ispisace mu u panelu da nema toliko novca
-      if (parseInt(e.target.value) > money) {
+      // 500 smo stavili da bi ostavili tih 500 za tikete u slucaju da hocemo sve da ulozimo odjednom
+      const dolar = parseInt(e.target.value) + 500;
+      if (dolar > money) {
         return switchMessage(7, msg(7));
       }
       // Dodeljuje vrednost ili ulozen broj
@@ -69,6 +71,7 @@ const app = function () {
       score[0].textContent = betMoney + '$';
       // Ispisujemo poruku
       switchMessage(6, msg(6, betMoney));
+      e.target.value = '';
     }
   };
 
@@ -191,9 +194,13 @@ const app = function () {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);
         // Vracamo klick kako bi mogao korisnik ponovo mogao da pokrene izvlacenje
-        // btn.onclick = playGameHandler;
+
         // Praznimo array combinations kako bi mogli da izvlacimo nove brojeve
         combinations = [];
+        // Takodje praznimo ulog kako bi mogli povo da ulazemo
+        betMoney = 0;
+        score[0].textContent = 0 + '$';
+        console.log();
       }
 
       // Funkcija koja nam generise random broj
@@ -365,30 +372,9 @@ const app = function () {
 
     // slektujemo sve ticket-e
     const select__ticket = [...document.querySelectorAll('#select__ticket')];
-    // Prolazimo kroz svaki posebno
-    // allTickets = select__ticket.map(item => {
-    //   // Prolazimo kroz svaki broj posebno
-    //   return [...item.children].map(item2 => {
-    //     // Vracamo style na pocetno stanje
-    //     item2.setAttribute(
-    //       'style',
-    //       'color: #4C4C4C; background: white; transition: none;'
-    //     );
-    //     // Ako ima broj, vraticemo broj
-    //     // Ovde treba da pazis, nikako nesmes da uradis parseInt zato
-    //     // sto na pocetku brojevi koje punis u tickete su typeof string.
-    //     // String su iz razloga sto kasnije pogodjen broj prebacujes u true i
-    //     // pogodjene brojeve trazis tako sto obacujes brojeve koji su typeof string
-    //     if (item2.textContent != '') {
-    //       return item2.textContent;
-    //     } else {
-    //       return null;
-    //     }
-    //   });
-    // });
 
+    // Vracamo allTikets na pocetno stanje
     allTickets = [];
-
     // Prolazimo kroz svaki posebno
     select__ticket.forEach((item, index) => {
       // Vracamo allTikets na pocetno stanje
