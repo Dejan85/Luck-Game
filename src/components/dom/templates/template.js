@@ -21,7 +21,7 @@ export const ticketTemplate = ticket => {
   return `<div class="game__ticket--container">
         <div class="game__ticket--header">
           <p class="game__ticket--p"> Tiket: </p>
-          <p class="game__ticket--p"> Quota: </p>
+          <p class="game__ticket--p"> Quota: <span id="quote">${ticket.length}</span></p>
         </div>
         <ul class="game__list" id="select__ticket">
             ${str}

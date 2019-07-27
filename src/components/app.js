@@ -1,5 +1,5 @@
 // dom elements
-import { selected__numbers, game__ticket } from './dom/elements/body';
+import { selected__numbers, game__ticket, quote } from './dom/elements/body';
 import {
   btn,
   game__panel__money,
@@ -34,6 +34,8 @@ const app = function () {
   let incMoney = 0;
   // Ulozeni novac
   let betMoney = 0;
+  // Ovo nam sluzi da izracunamo ulozen novac sa quotama
+  let betMoneyWithQuote = 0;
   // Dodeljujemo pocetni novac
   game__panel__money.children[1].textContent = money;
   // Prikazuje pocetnu poruku dole na panelu
@@ -200,7 +202,7 @@ const app = function () {
         // Takodje praznimo ulog kako bi mogli povo da ulazemo
         betMoney = 0;
         score[0].textContent = 0 + '$';
-        console.log();
+        betMoneyWithQuote = 0;
       }
 
       // Funkcija koja nam generise random broj
@@ -310,23 +312,23 @@ const app = function () {
     });
 
     // Prolazimo kroz pobednicke tikete
-    winingTickets.forEach(item => {
+    winingTickets.forEach((item, index) => {
       if (item.length === 1) {
         // Ako tiket ima jedan broj vrednost mu je 15
-        calc(15);
+        calc(15, 1.5);
       } else if (item.length === 2) {
         // Ako tiket ima dva broja vrednost mu je 25
-        calc(25);
+        calc(25, 2);
       } else if (item.length === 3) {
         // Ako tiket ima tri broja vrednost mu je 35
-        calc(35);
+        calc(35, 3);
       } else if (item.length === 4) {
         // Ako tiket ima cetiri broja vrednost mu je 60
-        calc(60);
+        calc(60, 4);
       } else if (item.length === 5) {
         // Ako tiket ima pet brojeva vrednost mu je 100
         // I to nam je ujedno i bingo
-        calc(100);
+        calc(100, 5);
       }
     });
 
@@ -334,7 +336,7 @@ const app = function () {
     // i samim tim na dobijeni novac necemo moci da dodelimo ulozeni novac.
     if (winingMoney != 0) {
       // Pare koje smo dobili dobijamo tako sto saberemo dobijene pare i ulozene pare
-      winingMoney = winingMoney + betMoney * 2;
+      winingMoney = winingMoney + betMoneyWithQuote;
     }
     // Ukupne pare dobijamo ovde tako sto saberemo ukupne pare i dobijene pare
     money = money + winingMoney;
@@ -342,7 +344,9 @@ const app = function () {
     game__panel__money.children[1].textContent = money;
 
     // Funkcija koja nam racuna dobijene kombinacije
-    function calc (num) {
+    function calc (num, quote) {
+      // Ovde racunamo ulozene pare sa quotom na svakom obijenom tiketu i na kraju dodajemo vec postojece rezultat
+      betMoneyWithQuote = betMoney * quote + betMoneyWithQuote;
       // Vraca nam 10 * broj za koliko uvecavamo dobitak u zavisnosti od quote
       // pa plus ponovo dobijene pare zbog da bi se sabirali svi zbirovi
       return (winingMoney = 10 * num + winingMoney);
