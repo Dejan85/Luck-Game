@@ -4,9 +4,9 @@ import {
   btn,
   game__panel__money,
   game__panel__bet,
-  score
+  score,
+  game__newTicket
 } from './dom/elements/panel';
-import { game__header } from './dom/elements/header';
 
 // functions
 import { showFillTicket, switchMessage } from './dom/functions';
@@ -31,7 +31,7 @@ const app = function () {
   // Pocetni novac koji imamo
   let money = 5000;
   // Novac koji smo osvojili
-  let incMoney = 0;
+  let switchBtn = true;
   // Ulozeni novac
   let betMoney = 0;
   // Ovo nam sluzi da izracunamo ulozen novac sa quotama
@@ -100,8 +100,6 @@ const app = function () {
     }
   };
 
-  // ticketHandler(allTickets, ticket, btn, selected__numbers)
-
   //
   // ─── POTVRDJUEMO TIKET ──────────────────────────────────────────────────────────
   //
@@ -142,14 +140,29 @@ const app = function () {
   };
 
   //
+  // ─── U TOKU IGRE IZMEDJU IZVLACENJA BROJEVA MENJA TIKETE ──────────────────
+  //
+
+  const newTicketsHandler = function () {
+    // Brisemo stare tikete iz html-a
+    game__ticket.innerHTML = '';
+    // Brisemo stare tickete iz allTickets
+    allTickets = [];
+    // Prebacujemo switchBtn na false kako bi mogli da vrtimo ponovo
+    // istu igru bez da pocinjemo iz pocetka
+    switchBtn = false;
+  };
+
+  //
   // ─── INICIJALIZOVANJE FUNKCIJE ZA POCETAK IGRE TIKETA ──────────────────────────────────────────────────────────
   //
 
   const rollingGame = function () {
     // Vrsimo proveru da li su svi tiketi popunjeni
     if (allTickets.length === 4) {
-      // Menjamo text glavnog dugmeta
-      btn.textContent = btnText3;
+      /* Menjamo text glavnog dugmeta u zavistonosti od switchBtn. Ako je false, to znaci da smo na pola igre
+       i da zeleimo da zamenimo samo tiket. Zato prebacujemo na btnText4 da bi mogli ponovo da izblacimo */
+      switchBtn ? (btn.textContent = btnText3) : (btn.textContent = btnText4);
       // Smanjujemo font-size da bi text u glavnom dugmetu bio lepo prikazan
       btn.style.fontSize = '2.3rem';
       // Dodeljujemo glavnom dugmetu novi event
@@ -203,8 +216,20 @@ const app = function () {
         combinations = [];
         // Takodje praznimo ulog kako bi mogli povo da ulazemo
         betMoney = 0;
+        // Upisujemo ga u html
         score[0].textContent = 0 + '$';
+        // Resetujemo ukupno izracunate dobijene pare od ulozenog + quote
         betMoneyWithQuote = 0;
+        // Prikazujemo dugme koje sluzi da u toku igre izaberemo neke druge tikete
+        game__newTicket.style.display = 'block';
+        // Dodeljujemo mu event handler
+        game__newTicket.onclick = newTicketsHandler;
+        // Menjamo text btn-u
+        btn.textContent = btnText4;
+        // Dodeljujemo btn-u ponovo handler
+        btn.onclick = btnHandler;
+        // funkcija koja proverava dobitnne tikete
+        winingTicketHandler();
       }
 
       // Funkcija koja nam generise random broj
@@ -284,13 +309,6 @@ const app = function () {
           }
         });
       });
-
-      // funkcija koja proverava dobitnne tikete
-      winingTicketHandler();
-      // Menjamo text btn-u
-      btn.textContent = btnText4;
-      // Dodeljujemo btn-u ponovo handler
-      btn.onclick = btnHandler;
     }
   };
 

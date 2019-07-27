@@ -382,12 +382,13 @@
 
   &__newTicket {
     position: absolute;
-    right: 15.3%;
+    right: 17.5%;
     bottom: 0;
     border: 0.8rem darken($color-pink, 30%) solid;
     padding: 1rem;
     cursor: pointer;
     transition: all 0.5s;
+    display: none;
 
     border-radius: 2rem 2rem 0rem 0rem;
 
