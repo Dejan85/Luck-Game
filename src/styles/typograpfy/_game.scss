@@ -85,4 +85,11 @@
       user-select: none;
     }
   }
+
+  &__newTicket {
+    color: white;
+    font-family: $font-2;
+    font-size: 1.8rem;
+    user-select: none;
+  }
 }

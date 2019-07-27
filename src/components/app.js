@@ -100,6 +100,8 @@ const app = function () {
     }
   };
 
+  // ticketHandler(allTickets, ticket, btn, selected__numbers)
+
   //
   // ─── POTVRDJUEMO TIKET ──────────────────────────────────────────────────────────
   //
@@ -315,7 +317,7 @@ const app = function () {
     winingTickets.forEach((item, index) => {
       if (item.length === 1) {
         // Ako tiket ima jedan broj vrednost mu je 15
-        calc(15, 1.5);
+        calc(15, 0.5);
       } else if (item.length === 2) {
         // Ako tiket ima dva broja vrednost mu je 25
         calc(25, 2);

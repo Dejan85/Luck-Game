@@ -9,7 +9,7 @@ import { game__panel__input } from '../elements/panel';
 // ─── PRIKAZUJE KOMPLETNU TABELU SA KOJE BIRAMO BROJEVE ZA TIKET ─────────────────
 //
 
-export const showFillTicket = fun => {
+export const showFillTicket = function (fun) {
   // Pozivamo funckiju za ispivanje poruke u panel
   switchMessage(2, msg(2));
   // Postavljamo ticket u block kako bi bio vidljiv
