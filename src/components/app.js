@@ -399,7 +399,7 @@ const app = function () {
     switchMessage(4, msg(4, winingMoney));
 
     // Ako izgubimo sav novac, igra je gotova
-    if (money === 0) {
+    if (money <= 0) {
       game__gameOver.style.display = 'flex';
 
       setTimeout(() => {
