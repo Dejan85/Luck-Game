@@ -100,6 +100,8 @@ const app = function () {
   //
 
   const ticketHandler = function () {
+    // Vracamo dugmetu handler posto smo ga dole brlokirali zbog bug-a
+    btn.onclick = btnHandler;
     // Ogranicili smo koliko tiketa je maksimalno za popunjavanje
     if (allTickets.length !== 5) {
       // Ogranicili smo koliko brojeva je max za izvlacenje
@@ -146,6 +148,11 @@ const app = function () {
         item.textContent = '';
       });
     }
+
+    // Brisemo klick event sa glavnog dugmeta. Ovo smo uradili da bi sprecili bag.
+    // Ako dugme non stop radi, onda cemo moci da ga pritiskamo koliko hocemo i samim tim
+    // sebi oduzimamo pare u prazno
+    btn.onclick = false;
   };
 
   //
