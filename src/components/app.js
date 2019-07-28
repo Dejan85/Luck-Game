@@ -67,6 +67,7 @@ const app = function () {
 
   // Ispisuje petu poruku
   game__panel__bet.children[0].onclick = function () {
+    // Unesite ulog i pritisnite enter
     switchMessage(5, msg(5));
   };
 
@@ -78,6 +79,7 @@ const app = function () {
       // 500 smo stavili da bi ostavili tih 500 za tikete u slucaju da hocemo sve da ulozimo odjednom
       const dolar = parseInt(e.target.value) + 500;
       if (dolar > money) {
+        // Nemate toliko novca
         return switchMessage(7, msg(7));
       }
       // Dodeljuje vrednost ili ulozen broj
@@ -89,7 +91,7 @@ const app = function () {
       game__panel__money.children[1].textContent = money;
       // Ispisujemo promenu takodje u html u score prikaz
       score[0].textContent = betMoney + '$';
-      // Ispisujemo poruku
+      // Ispisujemo poruku. Poruka nam govori koliko smo ulozili
       switchMessage(6, msg(6, betMoney));
       e.target.value = '';
     }
@@ -197,6 +199,7 @@ const app = function () {
   //
 
   const playGameHandler = function () {
+    // Počinje izvlačenje. Srećno!
     switchMessage(3, msg(3));
     // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug duplog izvlacenja
     btn.onclick = null;

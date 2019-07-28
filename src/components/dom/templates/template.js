@@ -18,7 +18,7 @@ export const ticketTemplate = ticket => {
 
   // Ovo nam je template za ticket, dodeljujemo mu gore vec definisan str
   // ili template i sve to zajedno ubacujemo u HTML
-  return `<div class="game__ticket--container">
+  return `<div class="game__ticket--container ">
         <div class="game__ticket--header">
           <p class="game__ticket--p"> Tiket: </p>
           <p class="game__ticket--p"> Quota: <span id="quote">${ticket.length}</span></p>

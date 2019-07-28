@@ -1,4 +1,4 @@
-// message
+// Poruke
 import { msg } from '../../messages/index';
 
 // elements
@@ -68,8 +68,6 @@ export const switchMessage = (num, msg) => {
     // Ispisuje poruku
     game__panel__input.children[0].textContent = msg;
   } else if (num === 4) {
-    // Dodaje css klasu koja nam daje animaciju
-    // game__panel__input.children[0].classList.add('textAnimate');
     // Ispisuje poruku
     game__panel__input.children[0].textContent = msg;
   } else if (num === 5) {

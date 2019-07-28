@@ -7,7 +7,6 @@ export const msg = (param, param2) => {
   } else if (param === 3) {
     return 'Počinje izvlačenje. Srećno!';
   } else if (param === 4) {
-    // return `Izvlacenje je zavrseno. Osvojili ste ukupno ${param2} $. Mozete igrati ponovo sa istim tiketima, ili mozete popuniti nove. Vise srece na sledecem izvlacenju!`;
     return `Osvojili ste ukupno ${param2} $`;
   } else if (param === 5) {
     return 'Unesite ulog i pritisnite enter.';
