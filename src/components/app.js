@@ -100,10 +100,10 @@ const app = function () {
   //
 
   const ticketHandler = function () {
-    // Vracamo dugmetu handler posto smo ga dole brlokirali zbog bug-a
-    btn.onclick = btnHandler;
     // Ogranicili smo koliko tiketa je maksimalno za popunjavanje
     if (allTickets.length !== 5) {
+      // Vracamo dugmetu handler posto smo ga dole brlokirali zbog bug-a
+      btn.onclick = btnHandler;
       // Ogranicili smo koliko brojeva je max za izvlacenje
       if (ticket.length < 5) {
         // proveravamo prazno polje, ako je kliknuto na prazno polje nece ubaciti broj
