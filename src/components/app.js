@@ -204,7 +204,7 @@ const app = function () {
     // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug duplog izvlacenja
     btn.onclick = null;
     // Kreiramo arr sa 30 brojeva koji ce nam sluziti kao brojcanik
-    const arr = Array.apply(this, Array(30)).map((item, index) => index + 1);
+    let arr = Array.apply(this, Array(30)).map((item, index) => index + 1);
 
     // Interval koji ce nam izvlaciti na svake 2 sekunde po jedan broj
     interval = setInterval(getRandomNum, 2000);
@@ -406,7 +406,7 @@ const app = function () {
       return (winingMoney = 10 * num + winingMoney);
     }
 
-    // Prikazujemo na panelu poruku
+    // Prikazujemo na panelu poruku. Poruka nam govori koliko smo osvojili.
     switchMessage(4, msg(4, winingMoney));
 
     // Ako izgubimo sav novac, igra je gotova
