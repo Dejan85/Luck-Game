@@ -224,6 +224,9 @@ const app = function () {
         ball(num, color, cssVars);
         // Smanjuje vrednost css varijable za 10rema
         cssVars = cssVars - 10;
+        // Skidamo event onclick da nebi korisnik mogao da u toku izvlacenja
+        // menja tikete
+        game__newTicket.onclick = false;
       } else {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);
@@ -234,7 +237,7 @@ const app = function () {
         // Resetujemo ukupno izracunate dobijene pare od ulozenog + quote
         betMoneyWithQuote = 0;
         // Prikazujemo dugme koje sluzi da u toku igre izaberemo neke druge tikete
-        game__newTicket.style.display = 'block';
+        game__newTicket.style.visibility = 'visible';
         // Dodeljujemo mu event handler
         game__newTicket.onclick = newTicketsHandler;
         // Menjamo text btn-u
@@ -480,7 +483,7 @@ const app = function () {
     // Resetujemo tikete
     game__ticket.innerHTML = '';
     // Dugme za nove tikete
-    game__newTicket.style.display = 'none';
+    game__newTicket.style.visibility = 'hidden';
     // Brisemo iz html-a kompletnu tablu za biranje brojeva
     fill__ticket.style.display = 'none';
     // Prekidamo interval, tacnije prekidamo izvlacenje brojeva
