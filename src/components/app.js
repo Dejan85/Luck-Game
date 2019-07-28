@@ -204,7 +204,7 @@ const app = function () {
     // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug duplog izvlacenja
     btn.onclick = null;
     // Kreiramo arr sa 30 brojeva koji ce nam sluziti kao brojcanik
-    let arr = Array.apply(this, Array(30)).map((item, index) => index + 1);
+    let arr = Array(30).fill().map((item, index) => index + 1);
 
     // Interval koji ce nam izvlaciti na svake 2 sekunde po jedan broj
     interval = setInterval(getRandomNum, 2000);
