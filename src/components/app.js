@@ -176,6 +176,8 @@ const app = function () {
     allTickets = [];
     // Brisemo sve kugle iz dom-a
     restAllBalls();
+    // Menjamo text na glavnom dugmetu
+    btn.textContent = btnText2;
   };
 
   //
