@@ -487,6 +487,12 @@ const app = function () {
     window.clearInterval(interval);
     // Vracamo glavnom dugmetu onclick event
     btn.onclick = btnHandler;
+    // Resetujemo inputu value ako ga imamo
+    game__panel__bet.children[0].value = '';
+    // Vracamo inputu mogucnost upisa, tj unos uloga
+    game__panel__bet.children[0].removeAttribute('readonly');
+    // Takodje brisemo iz html-a ulog koji smo upisali
+    score[0].textContent = 0 + '$';
   };
 
   //
