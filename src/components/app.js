@@ -56,6 +56,8 @@ const app = function () {
   //
 
   start.onclick = function () {
+    // Resetujemo sve parametre igre na poetak
+    resetGameHandler();
     start.parentElement.style.display = 'none';
   };
 
@@ -459,7 +461,7 @@ const app = function () {
   // ─── FUNCKFIJA KOJA RESETUJE CELU IGRU NA PCOETNO STANJE ────────────────────────
   //
 
-  game__resetBtn.onclick = function () {
+  function resetGameHandler () {
     // Pojedinacni tiket array
     ticket = [];
     // Glavni array gde smestamo sve tikete
@@ -496,7 +498,9 @@ const app = function () {
     game__panel__bet.children[0].removeAttribute('readonly');
     // Takodje brisemo iz html-a ulog koji smo upisali
     score[0].textContent = 0 + '$';
-  };
+  }
+
+  game__resetBtn.onclick = resetGameHandler;
 
   //
   // ─── FUNKCIJA KOJA UPRAVLLJA KLIKOVIMA GLAVNOG DUGMETA──────────────────────────────────────────────
