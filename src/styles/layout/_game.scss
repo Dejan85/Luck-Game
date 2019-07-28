@@ -426,4 +426,25 @@
       background: darken($color-pink, 25%);
     }
   }
+
+  &__gameOver,
+  &__playGame {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 100;
+  }
+
+  &__playGame {
+    display: flex;
+
+    i {
+      cursor: pointer;
+    }
+  }
 }

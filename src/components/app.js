@@ -2,7 +2,9 @@
 import {
   selected__numbers,
   game__ticket,
-  fill__ticket
+  fill__ticket,
+  game__gameOver,
+  start
 } from './dom/elements/body';
 import {
   btn,
@@ -14,7 +16,7 @@ import {
 } from './dom/elements/panel';
 
 // functions
-import { showFillTicket, switchMessage, restAllBall } from './dom/functions';
+import { showFillTicket, switchMessage, restAllBalls } from './dom/functions';
 
 // templates
 import { ticketTemplate, ball } from './dom/templates/template';
@@ -45,6 +47,17 @@ const app = function () {
   switchMessage(1, msg(1));
   // Dodeljuje glavnom dugmetu text
   btn.textContent = btnText;
+  // Kreiramo variablu za interval ovde da bi kasnije mogli da ga zaustavimo
+  // na dugme reset
+  let interval;
+
+  //
+  // ─── START GAME ─────────────────────────────────────────────────────────────────
+  //
+
+  start.onclick = function () {
+    start.parentElement.style.display = 'none';
+  };
 
   //
   // ─── DODELJUJEMO HANDLER FUNKCIJU INPUTU ZA UNOS ULOGA ──────────────────────────
@@ -152,7 +165,7 @@ const app = function () {
     // Brisemo stare tickete iz allTickets
     allTickets = [];
     // Brisemo sve kugle iz dom-a
-    restAllBall();
+    restAllBalls();
   };
 
   //
@@ -183,7 +196,8 @@ const app = function () {
     const arr = Array.apply(this, Array(30)).map((item, index) => index + 1);
 
     // Interval koji ce nam izvlaciti na svake 2 sekunde po jedan broj
-    const interval = setInterval(getRandomNum, 2000);
+    interval = setInterval(getRandomNum, 2000);
+
     // Counter koji nam sluzi da interval zna kada da se zaustavi
     let counter = 0;
     // Coutner koji nam sluzi da bi uticali na css variablu
@@ -196,11 +210,13 @@ const app = function () {
       // Counter se povecava za 1 i kada dodje do 12 interval ce prestati da radi
       counter++;
       if (counter <= 12) {
+        // Postavljamo input za ulog novca da bude readonly
+        // Ovo smo uradili da nebi mogli da u toku izvlacenje ulazemo novac
+        game__panel__bet.children[0].setAttribute('readonly', true);
         // Ovde generesimo random broj funkcijom random()
         let num = random();
         // Ovde ubacujemo generisan broj u glavni array
         combinations.push(num);
-
         // Pozivamo funkciju koja nam racuna dobijemo izgubljeno
         winningCombinationHandler(num, counter);
 
@@ -211,8 +227,6 @@ const app = function () {
       } else {
         // Kada je izvuceno 12 brojeva interval prestaje sa radom
         window.clearInterval(interval);
-        // Vracamo klick kako bi mogao korisnik ponovo mogao da pokrene izvlacenje
-
         // Praznimo array combinations kako bi mogli da izvlacimo nove brojeve
         combinations = [];
         // Upisujemo ga u html
@@ -231,6 +245,8 @@ const app = function () {
         winingTicketHandler();
         // Takodje praznimo ulog kako bi mogli ponovo da ulazemo
         betMoney = 0;
+        // Ovde vracamo input za unos uloga u normalu
+        game__panel__bet.children[0].removeAttribute('readonly');
       }
 
       // Funkcija koja nam generise random broj
@@ -378,6 +394,17 @@ const app = function () {
 
     // Prikazujemo na panelu poruku
     switchMessage(4, msg(4, winingMoney));
+
+    // Ako izgubimo sav novac, igra je gotova
+    if (money === 0) {
+      game__gameOver.style.display = 'flex';
+
+      setTimeout(() => {
+        game__gameOver.style.display = 'none';
+        start.parentElement.style.display = 'flex';
+        window.clearTimeout();
+      }, 3000);
+    }
   };
 
   //
@@ -386,7 +413,7 @@ const app = function () {
 
   const playAgainHandler = function () {
     // Brisemo sve kugle iz dom-a
-    restAllBall();
+    restAllBalls();
 
     // Oduzimamo od ukupnog novca onih 100$ po uplacenom tiketu
     money = money - 500;
@@ -449,13 +476,17 @@ const app = function () {
     // Dodeljuje glavnom dugmetu text
     btn.textContent = btnText;
     // Resetujemo sve kugle
-    restAllBall();
+    restAllBalls();
     // Resetujemo tikete
     game__ticket.innerHTML = '';
     // Dugme za nove tikete
     game__newTicket.style.display = 'none';
     // Brisemo iz html-a kompletnu tablu za biranje brojeva
     fill__ticket.style.display = 'none';
+    // Prekidamo interval, tacnije prekidamo izvlacenje brojeva
+    window.clearInterval(interval);
+    // Vracamo glavnom dugmetu onclick event
+    btn.onclick = btnHandler;
   };
 
   //

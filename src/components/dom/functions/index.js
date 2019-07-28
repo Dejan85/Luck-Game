@@ -90,7 +90,7 @@ export const switchMessage = (num, msg) => {
 // ─── RESETUJEMO SVE KUGLE ───────────────────────────────────────────────────────
 //
 
-export const restAllBall = () => {
+export const restAllBalls = () => {
   // Selektujemo sve kugle
   let balls = [...document.querySelectorAll('.game__header--ball')];
   // Prolazimo kroz kugle
