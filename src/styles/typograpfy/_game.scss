@@ -86,7 +86,8 @@
     }
   }
 
-  &__newTicket {
+  &__newTicket,
+  &__resetBtn {
     color: white;
     font-family: $font-2;
     font-size: 1.8rem;

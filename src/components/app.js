@@ -1,11 +1,16 @@
 // dom elements
-import { selected__numbers, game__ticket, quote } from './dom/elements/body';
+import {
+  selected__numbers,
+  game__ticket,
+  fill__ticket
+} from './dom/elements/body';
 import {
   btn,
   game__panel__money,
   game__panel__bet,
   score,
-  game__newTicket
+  game__newTicket,
+  game__resetBtn
 } from './dom/elements/panel';
 
 // functions
@@ -418,6 +423,39 @@ const app = function () {
 
     // Ponovo izvlacimo brojeve
     playGameHandler();
+  };
+
+  //
+  // ─── FUNCKFIJA KOJA RESETUJE CELU IGRU NA PCOETNO STANJE ────────────────────────
+  //
+
+  game__resetBtn.onclick = function () {
+    // Pojedinacni tiket array
+    ticket = [];
+    // Glavni array gde smestamo sve tikete
+    allTickets = [];
+    // Izvucene kombinacije
+    combinations = [];
+    // Pocetni novac koji imamo
+    money = 5000;
+    // Ulozeni novac
+    betMoney = 0;
+    // Ovo nam sluzi da izracunamo ulozen novac sa quotama
+    betMoneyWithQuote = 0;
+    // Pocetni novac upisujemo u html
+    game__panel__money.children[1].textContent = money;
+    // Prikazuje pocetnu poruku dole na panelu
+    switchMessage(1, msg(1));
+    // Dodeljuje glavnom dugmetu text
+    btn.textContent = btnText;
+    // Resetujemo sve kugle
+    restAllBall();
+    // Resetujemo tikete
+    game__ticket.innerHTML = '';
+    // Dugme za nove tikete
+    game__newTicket.style.display = 'none';
+    // Brisemo iz html-a kompletnu tablu za biranje brojeva
+    fill__ticket.style.display = 'none';
   };
 
   //
