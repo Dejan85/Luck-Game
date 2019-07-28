@@ -135,6 +135,10 @@ const app = function () {
     if (allTickets.length !== 5 && ticket.length >= 1) {
       // Prikzuje svaki tiket pojedinacno
       showTicketHandler();
+      // Brisemo klick event sa glavnog dugmeta. Ovo smo uradili da bi sprecili bag.
+      // Ako dugme non stop radi, onda cemo moci da ga pritiskamo koliko hocemo i samim tim
+      // sebi oduzimamo pare u prazno
+      btn.onclick = false;
       // Krece izvlacenje brojeva
       rollingGame();
       // prikazujemo brojeve na "Popunite tiket"
@@ -148,11 +152,6 @@ const app = function () {
         item.textContent = '';
       });
     }
-
-    // Brisemo klick event sa glavnog dugmeta. Ovo smo uradili da bi sprecili bag.
-    // Ako dugme non stop radi, onda cemo moci da ga pritiskamo koliko hocemo i samim tim
-    // sebi oduzimamo pare u prazno
-    btn.onclick = false;
   };
 
   //
