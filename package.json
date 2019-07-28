@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "start": "webpack-dev-server.js"
+    "start": "dist/index.html"
   },
   "repository": {
     "type": "git",
