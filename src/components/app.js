@@ -9,7 +9,7 @@ import {
 } from './dom/elements/panel';
 
 // functions
-import { showFillTicket, switchMessage } from './dom/functions';
+import { showFillTicket, switchMessage, restAllBall } from './dom/functions';
 
 // templates
 import { ticketTemplate, ball } from './dom/templates/template';
@@ -30,13 +30,11 @@ const app = function () {
   let combinations = [];
   // Pocetni novac koji imamo
   let money = 5000;
-  // Novac koji smo osvojili
-  let switchBtn = true;
   // Ulozeni novac
   let betMoney = 0;
   // Ovo nam sluzi da izracunamo ulozen novac sa quotama
   let betMoneyWithQuote = 0;
-  // Dodeljujemo pocetni novac
+  // Pocetni novac upisujemo u html
   game__panel__money.children[1].textContent = money;
   // Prikazuje pocetnu poruku dole na panelu
   switchMessage(1, msg(1));
@@ -47,8 +45,8 @@ const app = function () {
   // ─── DODELJUJEMO HANDLER FUNKCIJU INPUTU ZA UNOS ULOGA ──────────────────────────
   //
 
+  // Ispisuje petu poruku
   game__panel__bet.children[0].onclick = function () {
-    // Ispisuje petu poruku
     switchMessage(5, msg(5));
   };
 
@@ -148,9 +146,8 @@ const app = function () {
     game__ticket.innerHTML = '';
     // Brisemo stare tickete iz allTickets
     allTickets = [];
-    // Prebacujemo switchBtn na false kako bi mogli da vrtimo ponovo
-    // istu igru bez da pocinjemo iz pocetka
-    switchBtn = false;
+    // Brisemo sve kugle iz dom-a
+    restAllBall();
   };
 
   //
@@ -160,9 +157,8 @@ const app = function () {
   const rollingGame = function () {
     // Vrsimo proveru da li su svi tiketi popunjeni
     if (allTickets.length === 4) {
-      /* Menjamo text glavnog dugmeta u zavistonosti od switchBtn. Ako je false, to znaci da smo na pola igre
-       i da zeleimo da zamenimo samo tiket. Zato prebacujemo na btnText4 da bi mogli ponovo da izblacimo */
-      switchBtn ? (btn.textContent = btnText3) : (btn.textContent = btnText4);
+      /* Menjamo text dugmeta */
+      btn.textContent = btnText3;
       // Smanjujemo font-size da bi text u glavnom dugmetu bio lepo prikazan
       btn.style.fontSize = '2.3rem';
       // Dodeljujemo glavnom dugmetu novi event
@@ -214,8 +210,6 @@ const app = function () {
 
         // Praznimo array combinations kako bi mogli da izvlacimo nove brojeve
         combinations = [];
-        // Takodje praznimo ulog kako bi mogli povo da ulazemo
-        betMoney = 0;
         // Upisujemo ga u html
         score[0].textContent = 0 + '$';
         // Resetujemo ukupno izracunate dobijene pare od ulozenog + quote
@@ -230,6 +224,8 @@ const app = function () {
         btn.onclick = btnHandler;
         // funkcija koja proverava dobitnne tikete
         winingTicketHandler();
+        // Takodje praznimo ulog kako bi mogli ponovo da ulazemo
+        betMoney = 0;
       }
 
       // Funkcija koja nam generise random broj
@@ -247,7 +243,10 @@ const app = function () {
     }
   };
 
-  // funkcija koja proverava dobitne kombinacije
+  //
+  // ─── FUNKCIJA KOJA PROVERAVA DOBITNE KOMBINACIJE ────────────────────────────────
+  //
+
   const winningCombinationHandler = function (num, counter) {
     // Selektujemo liste, i koristimo spred operator da bi dobili array umesto node list.
     const select__ticket = [...document.querySelectorAll('#select__ticket')];
@@ -381,16 +380,12 @@ const app = function () {
   //
 
   const playAgainHandler = function () {
-    // Selektujemo sve kugle
-    let balls = [...document.querySelectorAll('.game__header--ball')];
-    // Prolazimo kroz kugle
-    balls.forEach(item => {
-      // Od svake kugle nalazimo roditelja, i onda brisemo trenutnu kuglu
-      item.parentNode.removeChild(item);
-    });
+    // Brisemo sve kugle iz dom-a
+    restAllBall();
 
     // Oduzimamo od ukupnog novca onih 100$ po uplacenom tiketu
     money = money - 500;
+
     // Upisujemo promenu u html
     game__panel__money.children[1].textContent = money;
 
@@ -420,8 +415,6 @@ const app = function () {
         }
       });
     });
-
-    // console.log(test);
 
     // Ponovo izvlacimo brojeve
     playGameHandler();

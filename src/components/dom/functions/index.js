@@ -85,3 +85,17 @@ export const switchMessage = (num, msg) => {
     game__panel__input.children[0].textContent = msg;
   }
 };
+
+//
+// ─── RESETUJEMO SVE KUGLE ───────────────────────────────────────────────────────
+//
+
+export const restAllBall = () => {
+  // Selektujemo sve kugle
+  let balls = [...document.querySelectorAll('.game__header--ball')];
+  // Prolazimo kroz kugle
+  balls.forEach(item => {
+    // Od svake kugle nalazimo roditelja, i onda brisemo trenutnu kuglu
+    item.parentNode.removeChild(item);
+  });
+};
