@@ -170,14 +170,16 @@ const app = function () {
   //
 
   const newTicketsHandler = function () {
-    // Brisemo stare tikete iz html-a
-    game__ticket.innerHTML = '';
-    // Brisemo stare tickete iz allTickets
-    allTickets = [];
-    // Brisemo sve kugle iz dom-a
-    restAllBalls();
-    // Menjamo text na glavnom dugmetu
-    btn.textContent = btnText2;
+    if (allTickets.length === 0 || allTickets.length === 5) {
+      // Brisemo stare tikete iz html-a
+      game__ticket.innerHTML = '';
+      // Brisemo stare tickete iz allTickets
+      allTickets = [];
+      // Brisemo sve kugle iz dom-a
+      restAllBalls();
+      // Menjamo text na glavnom dugmetu
+      btn.textContent = btnText2;
+    }
   };
 
   //
