@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "start": "src/index.html"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "url": "https://github.com/xypnotica/Luck-Game/issues"
   },
   "homepage": "https://github.com/xypnotica/Luck-Game#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "babel-core": "^6.26.3",
