@@ -20,15 +20,16 @@
 
 <body>
   <div class="container">
+    <div class="game__gameOver">Igra je gotova</div>
+    <div class="game__playGame">
+      <p>Počni igru</p>
+      <i class="fas fa-play start"></i>
+    </div>
     <div class="game">
-      <div class="game__header">
-        <div class="game__header--ball">
+      <div class="game__header" id="game__header">
+        <!-- <div class="game__header--ball">
           <p>23</p>
-        </div>
-
-        <div class="game__header--ball" style="left: -10rem">
-          <p>23</p>
-        </div>
+        </div> -->
 
         <div class="game__header--drum"></div>
         <div class="game__header--drum2"></div>
@@ -52,152 +53,30 @@
               -- TIKET
               -->
 
-          <div class="game__ticket">
-            <div class="game__ticket--container">
-              <div class="game__ticket--header">
-                <p class="game__ticket--p"> Tiket: 1</p>
-                <p class="game__ticket--p"> Quota: 1</p>
-              </div>
-              <ul class="game__list">
-                <li class="game__item">
-                  1
-                </li>
-                <li class="game__item">
-                  2
-                </li>
-                <li class="game__item">
-                  3
-                </li>
-                <li class="game__item">
-                  4
-                </li>
-                <li class="game__item">
-                  5
-                </li>
-              </ul>
-            </div>
+          <div class="game__ticket" id="game__ticket"> </div>
 
-            <div class="game__ticket--container">
-              <div class="game__ticket--header">
-                <p class="game__ticket--p"> Tiket: 1</p>
-                <p class="game__ticket--p"> Quota: 1</p>
-              </div>
-              <ul class="game__list">
-                <li class="game__item">
-                  1
-                </li>
-                <li class="game__item">
-                  2
-                </li>
-                <li class="game__item">
-                  3
-                </li>
-                <li class="game__item">
-                  4
-                </li>
-                <li class="game__item">
-                  5
-                </li>
-              </ul>
-            </div>
 
-            <div class="game__ticket--container">
-              <div class="game__ticket--header">
-                <p class="game__ticket--p"> Tiket: 1</p>
-                <p class="game__ticket--p"> Quota: 1</p>
-              </div>
-              <ul class="game__list">
-                <li class="game__item">
-                  1
-                </li>
-                <li class="game__item">
-                  2
-                </li>
-                <li class="game__item">
-                  3
-                </li>
-                <li class="game__item">
-                  4
-                </li>
-                <li class="game__item">
-                  5
-                </li>
-              </ul>
-            </div>
-
-            <div class="game__ticket--container">
-              <div class="game__ticket--header">
-                <p class="game__ticket--p"> Tiket: 1</p>
-                <p class="game__ticket--p"> Quota: 1</p>
-              </div>
-              <ul class="game__list">
-                <li class="game__item">
-                  1
-                </li>
-                <li class="game__item">
-                  2
-                </li>
-                <li class="game__item">
-                  3
-                </li>
-                <li class="game__item">
-                  4
-                </li>
-                <li class="game__item">
-                  5
-                </li>
-              </ul>
-            </div>
-
-            <div class="game__ticket--container">
-              <div class="game__ticket--header">
-                <p class="game__ticket--p"> Tiket: 1</p>
-                <p class="game__ticket--p"> Quota: 1</p>
-              </div>
-              <ul class="game__list">
-                <li class="game__item">
-                  1
-                </li>
-                <li class="game__item">
-                  2
-                </li>
-                <li class="game__item">
-                  3
-                </li>
-                <li class="game__item">
-                  4
-                </li>
-                <li class="game__item">
-                  5
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!--
-            -- IZVUCENA KOLA
-            -->
 
           <div class="game__rewards">
             <div class="game__rewards--item">
               <span>BINGO</span>
-              <p>x1000</p>
-            </div>
-            <div class="game__rewards--item">
-              <span>4 Pogodka</span>
-              <p>x600</p>
-            </div>
-            <div class="game__rewards--item">
-              <span>3 Pogodka</span>
-              <p>x300</p>
-            </div>
-            <div class="game__rewards--item">
-              <span>2 Pogodka</span>
               <p>x100</p>
             </div>
             <div class="game__rewards--item">
+              <span>4 Pogodka</span>
+              <p>x60</p>
+            </div>
+            <div class="game__rewards--item">
+              <span>3 Pogodka</span>
+              <p>x35</p>
+            </div>
+            <div class="game__rewards--item">
+              <span>2 Pogodka</span>
+              <p>x25</p>
+            </div>
+            <div class="game__rewards--item">
               <span>1 Pogodak</span>
-              <p>x50</p>
+              <p>x15</p>
             </div>
           </div>
 
@@ -206,124 +85,20 @@
             -->
 
           <div class="game__ticketPay">
-            <div class="game__ticketPay--container">
+            <div class="game__ticketPay--container" id="fill__ticket" style="display: none">
               <div class="game__ticket--header">
                 <p class="game__ticket--p">Popunite tiket</p>
               </div>
-              <ul class="game__list">
-                <!-- ovu listu sam hard codirao zato sto nisam jos krenuo da radim JS -->
-                <li class="game__item">
-                  1
-                </li>
-                <li class="game__item">
-                  2
-                </li>
-                <li class="game__item">
-                  3
-                </li>
-                <li class="game__item">
-                  4
-                </li>
-                <li class="game__item">
-                  5
-                </li>
-                <li class="game__item">
-                  6
-                </li>
-                <li class="game__item">
-                  7
-                </li>
-                <li class="game__item">
-                  8
-                </li>
-                <li class="game__item">
-                  9
-                </li>
-                <li class="game__item">
-                  10
-                </li>
-                <li class="game__item">
-                  11
-                </li>
-                <li class="game__item">
-                  12
-                </li>
-                <li class="game__item">
-                  13
-                </li>
-                <li class="game__item">
-                  14
-                </li>
-                <li class="game__item">
-                  15
-                </li>
-                <li class="game__item">
-                  16
-                </li>
-                <li class="game__item">
-                  17
-                </li>
-                <li class="game__item">
-                  18
-                </li>
-                <li class="game__item">
-                  19
-                </li>
-                <li class="game__item">
-                  20
-                </li>
-                <li class="game__item">
-                  21
-                </li>
-                <li class="game__item">
-                  22
-                </li>
-                <li class="game__item">
-                  23
-                </li>
-                <li class="game__item">
-                  24
-                </li>
-                <li class="game__item">
-                  25
-                </li>
-                <li class="game__item">
-                  26
-                </li>
-                <li class="game__item">
-                  27
-                </li>
-                <li class="game__item">
-                  28
-                </li>
-                <li class="game__item">
-                  29
-                </li>
-                <li class="game__item">
-                  30
-                </li>
+              <ul class="game__list" id="game__list">
+                <!-- ovde nam se izliztavaju svi brojevi  -->
               </ul>
 
               <div class="game__ticket--container" style="padding-top:1rem">
                 <div class="game__ticket--header">
                   <p class="game__ticket--p">Izabrani brojevi</p>
                 </div>
-                <ul class="game__list">
-                  <li class="game__item">
-
-                  </li>
-                  <li class="game__item">
-
-                  </li>
-                  <li class="game__item">
-
-                  </li>
-                  <li class="game__item">
-
-                  </li>
-                  <li class="game__item">
-
-                  </li>
+                <ul class="game__list" id="selected__numbers">
+                  <!-- ovde nam se izlistava 5 bojeva na koje smo kliknuli -->
                 </ul>
               </div>
             </div>
@@ -336,30 +111,36 @@
           -->
 
         <div class="game__footer">
+
+          <div class="game__score">
+            <p class="game__score--p">0$</p>
+          </div>
+
+          <div class="game__resetBtn">
+            <p>Reset Igru</p>
+          </div>
+
           <div class="game__panel">
             <div class="game__panel--input">
-              Popuni 1/5 tiket
+              <p></p>
             </div>
             <div class="game__panel--inputs">
               <div class="game__panel--money">
                 <i class="fas fa-coins"></i>
-                <p>1000 $</p>
+                <p id="game__panel--money">1000 $</p>
               </div>
               <div class="game__panel--bet">
-                <input type="text" placeholder="Unesite ulog"></input>
+                <input id="game__panel--bet" type="text" placeholder="Unesite ulog"></input>
                 <i class="fas fa-wallet"></i>
               </div>
             </div>
           </div>
 
-          <div class="game__score">
-            <p class="game__score--p">30</p>
+          <div class="game__newTicket">
+            <p>Drugi tiketi</p>
           </div>
 
-          <div class="game__button">
-            <p class="game__button--p">PLAY</p>
-          </div>
-
+          <div class="game__button"></div>
         </div>
       </div>
     </div>
