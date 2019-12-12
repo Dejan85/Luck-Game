@@ -5,7 +5,7 @@ import {
   fill__ticket,
   game__gameOver,
   start
-} from './dom/elements/body';
+} from "./dom/elements/body";
 import {
   btn,
   game__panel__money,
@@ -13,22 +13,22 @@ import {
   score,
   game__newTicket,
   game__resetBtn
-} from './dom/elements/panel';
+} from "./dom/elements/panel";
 
 // functions
-import { showFillTicket, switchMessage, restAllBalls } from './dom/functions';
+import { showFillTicket, switchMessage, restAllBalls } from "./dom/functions";
 
 // templates
-import { ticketTemplate, ball } from './dom/templates/template';
+import { ticketTemplate, ball } from "./dom/templates/template";
 
 // messages
-import { btnText, btnText2, btnText3, btnText4, msg } from './messages';
+import { btnText, btnText2, btnText3, btnText4, msg } from "./messages";
 
 //
 // ─── MAIN FUN ───────────────────────────────────────────────────────────────────
 //
 
-const app = function () {
+const app = function() {
   // Pojedinacni tiket array
   let ticket = [];
   // Glavni array gde smestamo sve tikete
@@ -55,10 +55,10 @@ const app = function () {
   // ─── START GAME ─────────────────────────────────────────────────────────────────
   //
 
-  start.onclick = function () {
+  start.onclick = function() {
     // Resetujemo sve parametre igre na poetak
     resetGameHandler();
-    start.parentElement.style.display = 'none';
+    start.parentElement.style.display = "none";
   };
 
   //
@@ -66,12 +66,12 @@ const app = function () {
   //
 
   // Ispisuje petu poruku
-  game__panel__bet.children[0].onclick = function () {
+  game__panel__bet.children[0].onclick = function() {
     // Unesite ulog i pritisnite enter
     switchMessage(5, msg(5));
   };
 
-  game__panel__bet.children[0].onkeyup = function (e) {
+  game__panel__bet.children[0].onkeyup = function(e) {
     // Ako smo pritisnuli enter radi sledece...
     if (e.keyCode === 13) {
       // Ovde pravimo error handler. Ako korisnik upise vise novca nego sto ima
@@ -90,10 +90,10 @@ const app = function () {
       // Ispisujemo promenu u html-u
       game__panel__money.children[1].textContent = money;
       // Ispisujemo promenu takodje u html u score prikaz
-      score[0].textContent = betMoney + '$';
+      score[0].textContent = betMoney + "$";
       // Ispisujemo poruku. Poruka nam govori koliko smo ulozili
       switchMessage(6, msg(6, betMoney));
-      e.target.value = '';
+      e.target.value = "";
     }
   };
 
@@ -101,7 +101,7 @@ const app = function () {
   // ─── POPUNJAVANJE TIKETA ────────────────────────────────────────────────────────
   //
 
-  const ticketHandler = function () {
+  const ticketHandler = function() {
     // Ogranicili smo koliko tiketa je maksimalno za popunjavanje
     if (allTickets.length !== 5) {
       // Vracamo dugmetu handler posto smo ga dole brlokirali zbog bug-a
@@ -109,9 +109,9 @@ const app = function () {
       // Ogranicili smo koliko brojeva je max za izvlacenje
       if (ticket.length < 5) {
         // proveravamo prazno polje, ako je kliknuto na prazno polje nece ubaciti broj
-        if (this.textContent !== ' ') ticket.push(this.textContent);
+        if (this.textContent !== " ") ticket.push(this.textContent);
         // brisemo broj sa table kada kliknem na njega
-        this.textContent = ' ';
+        this.textContent = " ";
         // menjamo text na glavnom dugmetu
         btn.textContent = btnText2;
         // ubacujemo klinuti broj u izabrani brojevi
@@ -126,7 +126,7 @@ const app = function () {
   // ─── POTVRDJUEMO TIKET ──────────────────────────────────────────────────────────
   //
 
-  const addTicketHandler = function () {
+  const addTicketHandler = function() {
     // Na svaki ubaceni tiket ovde skidamo od ukupnog novca po 100$
     money = money - 100;
     // Promenu upisujemo u HTML
@@ -151,7 +151,7 @@ const app = function () {
       ticket = [];
       // brisemo brojeve iz  tabele izabrani brojevi posle potvrdjivanja tiekta
       [...selected__numbers.children].map(item => {
-        item.textContent = '';
+        item.textContent = "";
       });
     }
   };
@@ -160,7 +160,7 @@ const app = function () {
   // ─── PRIKAZUJEMO TIKET NA EKRANU ────────────────────────────────────────────────
   //
 
-  const showTicketHandler = function () {
+  const showTicketHandler = function() {
     // Ubacujemo tiket u html
     game__ticket.innerHTML += ticketTemplate(ticket);
   };
@@ -169,10 +169,10 @@ const app = function () {
   // ─── U TOKU IGRE IZMEDJU IZVLACENJA BROJEVA MENJA TIKETE ──────────────────
   //
 
-  const newTicketsHandler = function () {
+  const newTicketsHandler = function() {
     if (allTickets.length === 0 || allTickets.length === 5) {
       // Brisemo stare tikete iz html-a
-      game__ticket.innerHTML = '';
+      game__ticket.innerHTML = "";
       // Brisemo stare tickete iz allTickets
       allTickets = [];
       // Brisemo sve kugle iz dom-a
@@ -186,13 +186,13 @@ const app = function () {
   // ─── INICIJALIZOVANJE FUNKCIJE ZA POCETAK IGRE TIKETA ──────────────────────────────────────────────────────────
   //
 
-  const rollingGame = function () {
+  const rollingGame = function() {
     // Vrsimo proveru da li su svi tiketi popunjeni
     if (allTickets.length === 4) {
       /* Menjamo text dugmeta */
       btn.textContent = btnText3;
       // Smanjujemo font-size da bi text u glavnom dugmetu bio lepo prikazan
-      btn.style.fontSize = '2.3rem';
+      btn.style.fontSize = "2.3rem";
       // Dodeljujemo glavnom dugmetu novi event
       btn.onclick = playGameHandler;
     }
@@ -202,13 +202,15 @@ const app = function () {
   // ─── FUNKCIJA KOJA UPRAVLJA IZVLACENJEM BROJEVA ─────────────────────────────────
   //
 
-  const playGameHandler = function () {
+  const playGameHandler = function() {
     // Počinje izvlačenje. Srećno!
     switchMessage(3, msg(3));
     // Blokiramo klik kako nebi korisnik mogao da klikne vise puta i tako napravi bug duplog izvlacenja
     btn.onclick = null;
     // Kreiramo arr sa 30 brojeva koji ce nam sluziti kao brojcanik
-    let arr = Array(30).fill().map((item, index) => index + 1);
+    let arr = Array(30)
+      .fill()
+      .map((item, index) => index + 1);
 
     // Interval koji ce nam izvlaciti na svake 2 sekunde po jedan broj
     interval = setInterval(getRandomNum, 2000);
@@ -218,16 +220,18 @@ const app = function () {
     // Coutner koji nam sluzi da bi uticali na css variablu
     let cssVars = 124.5;
     // funkcija koja nam vraca random broj
-    function getRandomNum () {
+    function getRandomNum() {
       // setuje random color koji nam sluzi dole da prosledimo
       // funkciji za bojenje svake kugle pojedinacno
-      let color = `#${Math.random().toString(16).substring(2, 8)}`;
+      let color = `#${Math.random()
+        .toString(16)
+        .substring(2, 8)}`;
       // Counter se povecava za 1 i kada dodje do 12 interval ce prestati da radi
       counter++;
       if (counter <= 12) {
         // Postavljamo input za ulog novca da bude readonly
         // Ovo smo uradili da nebi mogli da u toku izvlacenje ulazemo novac
-        game__panel__bet.children[0].setAttribute('readonly', true);
+        game__panel__bet.children[0].setAttribute("readonly", true);
         // Ovde generesimo random broj funkcijom random()
         let num = random();
         // Ovde ubacujemo generisan broj u glavni array
@@ -248,11 +252,11 @@ const app = function () {
         // Praznimo array combinations kako bi mogli da izvlacimo nove brojeve
         combinations = [];
         // Upisujemo ga u html
-        score[0].textContent = 0 + '$';
+        score[0].textContent = 0 + "$";
         // Resetujemo ukupno izracunate dobijene pare od ulozenog + quote
         betMoneyWithQuote = 0;
         // Prikazujemo dugme koje sluzi da u toku igre izaberemo neke druge tikete
-        game__newTicket.style.visibility = 'visible';
+        game__newTicket.style.visibility = "visible";
         // Dodeljujemo mu event handler
         game__newTicket.onclick = newTicketsHandler;
         // Menjamo text btn-u
@@ -264,11 +268,11 @@ const app = function () {
         // Takodje praznimo ulog kako bi mogli ponovo da ulazemo
         betMoney = 0;
         // Ovde vracamo input za unos uloga u normalu
-        game__panel__bet.children[0].removeAttribute('readonly');
+        game__panel__bet.children[0].removeAttribute("readonly");
       }
 
       // Funkcija koja nam generise random broj
-      function random () {
+      function random() {
         // Generisemo random broj tako sto arr-u dodajemo kao index random
         // broj i tako dobijamo element iz ovog array-a
         let randNum = arr[Math.floor(Math.random() * arr.length)];
@@ -286,11 +290,11 @@ const app = function () {
   // ─── FUNKCIJA KOJA PROVERAVA DOBITNE KOMBINACIJE ────────────────────────────────
   //
 
-  const winningCombinationHandler = function (num, counter) {
+  const winningCombinationHandler = function(num, counter) {
     // Selektujemo liste, i koristimo spred operator da bi dobili array umesto node list.
-    const select__ticket = [...document.querySelectorAll('#select__ticket')];
+    const select__ticket = [...document.querySelectorAll("#select__ticket")];
     // Ovde prolazimo kroz sve kombinacije
-    allTickets.forEach(function (ele, ticket) {
+    allTickets.forEach(function(ele, ticket) {
       // Ovde prolazimo kroz svaku kombinaciju posebno.
       // Ticket nam je koji je tiket.
       ele.forEach((item, numInTicket) => {
@@ -302,8 +306,8 @@ const app = function () {
           // a numInTicket-tom u listi koji je broj izvucen.
           // Dobijenom rezultatu dodajemo css style
           select__ticket[ticket].children[numInTicket].setAttribute(
-            'style',
-            'color: white; background:#81c405'
+            "style",
+            "color: white; background:#81c405"
           );
         }
       });
@@ -334,11 +338,11 @@ const app = function () {
           // znaci da je ostao broj koji nismo pogodili)
           // Ako je true imamo pogodjen broj
 
-          if (typeof item2 === 'string') {
+          if (typeof item2 === "string") {
             // Na osnovu gore dobijenog resultata, ako imamo da je item2 === string,
             // znaci da tiket nije dobijen i bojimo ga u crveno
             [...select__ticket[index].children].forEach(item => {
-              item.setAttribute('style', 'color: white; background: #ff0000;');
+              item.setAttribute("style", "color: white; background: #ff0000;");
             });
 
             // Ovde postavljamo ceo arra-y koji predstavlja ticket u false
@@ -354,7 +358,7 @@ const app = function () {
   // ─── FUNKCIJA KOJA PROFERAVA KOLIKO TIKETA SMO DOBILI ───────────────────────────
   //
 
-  const winingTicketHandler = function () {
+  const winingTicketHandler = function() {
     // Pobednicki tiketi
     const winingTickets = [];
     // Koliko smo dobili novca
@@ -363,7 +367,7 @@ const app = function () {
     // Prolazimo kroz sve tikete
     allTickets.forEach(item => {
       // i proveravamo da li je ticket true
-      if (typeof item === 'object') {
+      if (typeof item === "object") {
         // ako jeste prebacujemo ga u arr gde drzimo sve pobednicke tikete
         winingTickets.push(item);
       }
@@ -402,7 +406,7 @@ const app = function () {
     game__panel__money.children[1].textContent = money;
 
     // Funkcija koja nam racuna dobijene kombinacije
-    function calc (num, quote) {
+    function calc(num, quote) {
       // Ovde racunamo ulozene pare sa quotom na svakom obijenom tiketu i na kraju dodajemo vec postojece rezultat
       betMoneyWithQuote = betMoney * quote + betMoneyWithQuote;
       // Vraca nam 10 * broj za koliko uvecavamo dobitak u zavisnosti od quote
@@ -415,11 +419,11 @@ const app = function () {
 
     // Ako izgubimo sav novac, igra je gotova
     if (money <= 0) {
-      game__gameOver.style.display = 'flex';
+      game__gameOver.style.display = "flex";
 
       setTimeout(() => {
-        game__gameOver.style.display = 'none';
-        start.parentElement.style.display = 'flex';
+        game__gameOver.style.display = "none";
+        start.parentElement.style.display = "flex";
         window.clearTimeout();
       }, 3000);
     }
@@ -429,7 +433,7 @@ const app = function () {
   // ─── FUNKCIJA KOJA PONOVO IZVLACI BROJEVE ───────────────────────
   //
 
-  const playAgainHandler = function () {
+  const playAgainHandler = function() {
     // Brisemo sve kugle iz dom-a
     restAllBalls();
 
@@ -440,7 +444,7 @@ const app = function () {
     game__panel__money.children[1].textContent = money;
 
     // slektujemo sve ticket-e
-    const select__ticket = [...document.querySelectorAll('#select__ticket')];
+    const select__ticket = [...document.querySelectorAll("#select__ticket")];
 
     // Vracamo allTikets na pocetno stanje
     allTickets = [];
@@ -452,15 +456,15 @@ const app = function () {
       [...item.children].forEach((item2, index2) => {
         // Vracamo style na pocetno stanje
         item2.setAttribute(
-          'style',
-          'color: #4C4C4C; background: white; transition: none;'
+          "style",
+          "color: #4C4C4C; background: white; transition: none;"
         );
         // Ako ima broj, vraticemo broj
         // Ovde treba da pazis, nikako nesmes da uradis parseInt zato
         // sto na pocetku brojevi koje punis u tickete su typeof string.
         // String su iz razloga sto kasnije pogodjen broj prebacujes u true i
         // pogodjene brojeve trazis tako sto obacujes brojeve koji su typeof string
-        if (item2.textContent != '') {
+        if (item2.textContent != "") {
           allTickets[index].push(item2.textContent);
         }
       });
@@ -474,7 +478,7 @@ const app = function () {
   // ─── FUNCKFIJA KOJA RESETUJE CELU IGRU NA PCOETNO STANJE ────────────────────────
   //
 
-  function resetGameHandler () {
+  function resetGameHandler() {
     // Pojedinacni tiket array
     ticket = [];
     // Glavni array gde smestamo sve tikete
@@ -496,21 +500,21 @@ const app = function () {
     // Resetujemo sve kugle
     restAllBalls();
     // Resetujemo tikete
-    game__ticket.innerHTML = '';
+    game__ticket.innerHTML = "";
     // Dugme za nove tikete
-    game__newTicket.style.visibility = 'hidden';
+    game__newTicket.style.visibility = "hidden";
     // Brisemo iz html-a kompletnu tablu za biranje brojeva
-    fill__ticket.style.display = 'none';
+    fill__ticket.style.display = "none";
     // Prekidamo interval, tacnije prekidamo izvlacenje brojeva
     window.clearInterval(interval);
     // Vracamo glavnom dugmetu onclick event
     btn.onclick = btnHandler;
     // Resetujemo inputu value ako ga imamo
-    game__panel__bet.children[0].value = '';
+    game__panel__bet.children[0].value = "";
     // Vracamo inputu mogucnost upisa, tj unos uloga
-    game__panel__bet.children[0].removeAttribute('readonly');
+    game__panel__bet.children[0].removeAttribute("readonly");
     // Takodje brisemo iz html-a ulog koji smo upisali
-    score[0].textContent = 0 + '$';
+    score[0].textContent = 0 + "$";
   }
 
   game__resetBtn.onclick = resetGameHandler;
@@ -519,7 +523,7 @@ const app = function () {
   // ─── FUNKCIJA KOJA UPRAVLLJA KLIKOVIMA GLAVNOG DUGMETA──────────────────────────────────────────────
   //
 
-  const btnHandler = function () {
+  const btnHandler = function() {
     // Prikazuje tablu sa koje briramo brojeve
     if (btn.textContent === btnText) showFillTicket(ticketHandler);
     // Pokrece funkciju koja sluzi za popunjavanje i cekiranje tiketa
